@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citadyo | Relocation Made Simple</title>
+  <meta name="description"
+    content="Citadyo helps students and young professionals relocate smoothly with settling kits, citadyo associates, and more." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <!-- INTRO ANIMATION -->
+  <div id="intro">
+    <div class="intro-dot"></div>
+    <img src="/logo-new.png" class="intro-logo" />
+    <h1 class="intro-text">Citadyo</h1>
+    <p class="intro-tagline">Your first friend in a new city.</p>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li class="dropdown" id="offerings-menu">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/work-with-us.html">Work With Us</a></li>
+        <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content fade-in">
+      <div class="badge">🚀 Launching soon</div>
+      <h1>Move in without the <span class="text-accent">stress.</span></h1>
+      <p>The ultimate relocation co-pilot for students and young professionals. From essential settling kits to senior
+        Associates, we make sure you arrive feeling at home.</p>
+
+      <form id="waitlist-form" class="waitlist-form">
+        <div class="form-row">
+          <div class="input-group">
+            <input type="text" id="name" name="name" placeholder="Full Name" required />
+            <span class="inline-error" id="name-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" name="email" placeholder="Email Address" required />
+            <span class="inline-error" id="email-error"></span>
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="text" id="city" name="city" placeholder="Destination City (Optional)" />
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Join Waitlist</button>
+      </form>
+      <div class="social-proof">
+        <div class="avatars">
+          <img src="https://i.pravatar.cc/100?img=1" alt="Student">
+          <img src="https://i.pravatar.cc/100?img=2" alt="Student">
+          <img src="https://i.pravatar.cc/100?img=3" alt="Student">
+          <img src="https://i.pravatar.cc/100?img=4" alt="Student">
+        </div>
+        <span>Join <strong>90+</strong> students & professionals already on the waitlist</span>
+      </div>
+      <p id="form-message" class="form-message" style="
+  padding:12px;
+  margin-top:15px;
+  border-radius:8px;
+  text-align:center;
+  font-weight:500;
+"></p>
+    </div>
+    <div class="hero-visual fade-in-up">
+      <div class="glass-card hero-mockup">
+        <div class="mockup-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-profile">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Senior Guide" class="guide-avatar">
+            <div class="guide-info">
+              <strong>Sarah .</strong>
+              <span>Your Associate</span>
+            </div>
+          </div>
+          <div class="mockup-chat">
+            <div class="chat-line">Hey! I saw you're moving to the North Campus area.</div>
+            <div class="chat-line self">Yes! Just got my lease approved.</div>
+            <div class="chat-line">Awesome! Your settling kit will be delivered on day 1. I'll show you around the
+              neighborhood!</div>
+          </div>
+          <a href="/#offerings-section" class="mockup-btn" style="display:inline-block;">
+            View Relocation Plan
+          </a>
+        </div>
+      </div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Your move, on autopilot</h2>
+      <p>Three simple steps to transition from anxious to settled.</p>
+    </div>
+    <div class="steps-container">
+      <div class="step fade-in-up" style="animation-delay: 0.1s">
+        <div class="step-number">1</div>
+        <h3>Tell us your plans</h3>
+        <p>Share your destination city, university or workplace, and your expected move-in date.</p>
+      </div>
+      <div class="step fade-in-up" style="animation-delay: 0.2s">
+        <div class="step-number">2</div>
+        <h3>Customize your arrival</h3>
+        <p>Select your required settling kit (bedding, kitchen, etc.) and match with a Senior Associate.</p>
+      </div>
+      <div class="step fade-in-up" style="animation-delay: 0.3s">
+        <div class="step-number">3</div>
+        <h3>Arrive and thrive</h3>
+        <p>Walk into a fully prepped apartment and meet your Associate for an insider neighborhood tour.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="offerings-section" class="services bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Everything you need in a new city</h2>
+      <p>Your complete relocation support system — before you arrive and after you land.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- 1. Settling Kits -->
+      <a href="/settling-kits.html" class="service-link">
+        <div class="service-card glass fade-in-up" style="animation-delay: 0.1s">
+          <div class="icon-wrapper">
+            <i data-lucide="package"></i>
+          </div>
+          <h3>Settling Kits</h3>
+          <p>We serve you with carefully curated essentials to get you through your first days — from daily-use items to
+            small but important basics. No confusion, no last-minute shopping, just a smooth start.</p>
+        </div>
+      </a>
+
+      <!-- 2. Arrival Assistance -->
+      <a href="/arrival-assistance.html" class="service-link">
+        <div class="service-card glass fade-in-up" style="animation-delay: 0.2s">
+          <div class="icon-wrapper">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <h3>Arrival Assistance</h3>
+          <p>From pickup and your first meal to check-in support and city orientation — we make sure you settle in
+            comfortably. Even late-night arrivals, we stay with you until you’re safe and settled.</p>
+        </div>
+      </a>
+
+      <!-- 3. Ask a Senior -->
+      <a href="/ask-a-senior.html" class="service-link">
+        <div class="service-card glass fade-in-up" style="animation-delay: 0.3s">
+          <div class="icon-wrapper">
+            <i data-lucide="message-circle"></i>
+          </div>
+          <h3>Ask a Senior</h3>
+          <p>Connect with a senior from your college, company, or city. Ask anything — from daily life to real
+            challenges — and get honest insights before you even arrive.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Become a Guide Section -->
+  <section id="guide" class="guide-section fade-in bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="guide-content">
+      <div class="badge badge-outline">For Seniors</div>
+      <h2>Know your city well? <br>Become an <span class="text-accent">Associate.</span></h2>
+      <p>Help newcomers settle in seamlessly and earn money while doing it. Share your local knowledge, recommend the
+        best coffee spots, and make a real difference in someone's transition.</p>
+      <div class="guide-perks">
+        <div class="perk"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+            fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg> Flexible hours</div>
+        <div class="perk"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+            fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg> Earn extra income</div>
+        <div class="perk"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+            fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg> Build your network</div>
+      </div>
+      <a href="/work-with-us.html" class="btn-primary mt-4">Explore Roles</a>
+    </div>
+    <div class="guide-image">
+      <div class="glass-card guide-mockup">
+        <div class="earnings">
+          <span>Monthly Earnings</span>
+          <h3>Top Associates earn up to ₹30K/month</h3>
+          <div class="bar-chart">
+            <div class="bar" style="height: 40%"></div>
+            <div class="bar" style="height: 60%"></div>
+            <div class="bar" style="height: 80%"></div>
+            <div class="bar accent" style="height: 100%"></div>
+          </div>
+        </div>
+        <div class="new-match">
+          <div class="match-icon">👋</div>
+          <div class="match-text">
+            <strong>New Match!</strong>
+            <span>Alex is moving to your city next week.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" class="logo" style="display:flex; align-items:center; gap:10px;">
+          <img src="/logo.png" alt="Citadyo Logo" style="height:32px;">
+          <span class="brand-name">Citadyo</span>
+        </a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/work-with-us.html">Careers</a></li>
+          <li>
+            <a href="mailto:citadyo.official@gmail.com?subject=Inquiry from Citadyo&body=Hi Team Citadyo,">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("2eQPcf78ba9teOHLW");
+  </script>
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const intro = document.getElementById("intro");
+        intro.style.transition = "opacity 0.5s ease";
+        intro.style.opacity = "0";
+
+        setTimeout(() => {
+          intro.style.display = "none";
+        }, 500);
+      }, 2600);
+    });
+  </script>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

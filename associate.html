@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Become a City Associate | Citadyo</title>
+  <meta name="description"
+    content="Apply to become a Citadyo City Associate. Help newcomers settle into your city while building connections and earning." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/work-with-us.html">Work With Us</a></li>
+        <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: auto; padding-top: 10rem; padding-bottom: 4rem;">
+    <div class="hero-content fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="badge">Join the Team</div>
+      <h1>Become a City <span class="text-accent">Associate.</span></h1>
+      <p>Help newcomers feel at home in your city. Share your local knowledge, support relocations, and get rewarded for
+        making a difference.</p>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="bg-full bg-light" style="padding-bottom: 6rem; padding-top: 2rem;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+      <div class="glass-card fade-in-up" style="padding: 3rem;">
+        <form id="associate-form" class="waitlist-form">
+          <h3 style="margin-bottom: 1.5rem;">Basic Information</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="assoc-name" name="name" placeholder="Full Name *" required />
+              <span class="inline-error" id="assoc-name-error"></span>
+            </div>
+            <div class="input-group">
+              <input type="email" id="assoc-email" name="email" placeholder="Email Address *" required />
+              <span class="inline-error" id="assoc-email-error"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="tel" id="assoc-phone" name="phone" placeholder="Phone Number *" required />
+              <span class="inline-error" id="assoc-phone-error"></span>
+            </div>
+            <div class="input-group">
+              <select id="assoc-gender" name="gender"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Select Gender *</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="assoc-city-area" name="city_area" placeholder="Current City & Area *" required />
+            </div>
+            <div class="input-group">
+              <input type="text" id="assoc-native-place" name="native_place"
+                placeholder="Native Place (City, State) - Eg. Kochi, Kerala" />
+            </div>
+          </div>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 1.5rem;">Profile Details</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <select id="assoc-profile-type" name="profile_type"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Are you a Student or Working Professional? *</option>
+                <option value="student">Student</option>
+                <option value="working">Working Professional</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Student Fields -->
+          <div id="student-fields" style="display: none;">
+            <div class="form-row">
+              <div class="input-group">
+                <input type="text" id="assoc-college" name="college" placeholder="College / University Name" />
+              </div>
+              <div class="input-group">
+                <label for="assoc-college-id"
+                  style="font-size: 0.9rem; color: var(--text-primary); margin-bottom: 0.5rem; display: block; font-weight: 500;">Upload
+                  College ID *</label>
+                <input type="file" id="assoc-college-id" name="college_id" accept="image/*,.pdf"
+                  style="padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); width: 100%; color: var(--text-primary); font-family: var(--font-body);" />
+                <span style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; display: block;">You
+                  must be in 3rd year or above to apply</span>
+                <span class="inline-error" id="assoc-college-id-error"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Working Professional Fields -->
+          <div id="working-fields" style="display: none;">
+            <div class="form-row">
+              <div class="input-group">
+                <input type="text" id="assoc-company" name="company" placeholder="Company Name" />
+              </div>
+              <div class="input-group">
+                <input type="text" id="assoc-role" name="role" placeholder="Your Job Role" />
+              </div>
+            </div>
+            <div class="form-row" style="margin-top: 1rem;">
+              <div class="input-group">
+                <input type="number" id="assoc-exp" name="experience_years" placeholder="Years of Experience" min="0"
+                  step="0.5" />
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 1.5rem;">Skills & Languages</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="assoc-lang-primary" name="primary_language" placeholder="Primary Language *"
+                required />
+              <span style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; display: block;">Select
+                your native language</span>
+            </div>
+            <div class="input-group">
+              <input type="text" id="assoc-lang-sec" name="secondary_language" placeholder="Secondary Language" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="assoc-lang-other" name="other_languages" placeholder="Other Languages" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <select id="assoc-driving" name="driving"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Do you know how to drive? *</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <input type="text" id="assoc-vehicle" name="vehicle" placeholder="Vehicle Owned (if any)" />
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 1rem;">
+            <div class="input-group">
+              <textarea id="assoc-motivation" name="motivation"
+                placeholder="Why do you want to become a Citadyo Associate? *" required
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition); min-height: 120px; resize: vertical;"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+            <input type="checkbox" id="assoc-declaration" name="declaration"
+              style="margin-top: 0.25rem; width: 1.2rem; height: 1.2rem; accent-color: var(--accent);" required />
+            <label for="assoc-declaration" style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.5;">
+              I confirm that the information provided is accurate and I agree to Citadyo’s guidelines and verification
+              process. *
+            </label>
+          </div>
+          <span class="inline-error" id="assoc-declaration-error" style="margin-left: 2rem;"></span>
+
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 2rem;">Submit Application</button>
+          <p id="associate-form-message" class="form-message" style="margin-top: 0.5rem; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo"><img src="/logo.png" alt="Citadyo Logo"></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/work-with-us.html">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("2eQPcf78ba9teOHLW");
+    })();
+  </script>
+  <script type="module" src="/main.js"></script>
+  <script>
+    // Profile Type UI Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const profileSelect = document.getElementById('assoc-profile-type');
+      const studentFields = document.getElementById('student-fields');
+      const workingFields = document.getElementById('working-fields');
+
+      if (profileSelect) {
+        profileSelect.addEventListener('change', (e) => {
+          if (e.target.value === 'student') {
+            studentFields.style.display = 'block';
+            workingFields.style.display = 'none';
+          } else if (e.target.value === 'working') {
+            studentFields.style.display = 'none';
+            workingFields.style.display = 'block';
+          } else {
+            studentFields.style.display = 'none';
+            workingFields.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

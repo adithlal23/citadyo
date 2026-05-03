@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deliver with Citadyo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR (same as associate) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="/logo.png"> <span class="brand-name">Citadyo</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/#how-it-works">How it Works</a></li>
+                <li><a href="/work-with-us.html">Work With Us</a></li>
+                <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height:auto;padding-top:10rem;padding-bottom:4rem;">
+        <div class="hero-content" style="max-width:800px;margin:auto;text-align:center;">
+            <div class="badge">Join the Team</div>
+
+            <h1>
+                Deliver with <span class="text-accent">Citadyo.</span>
+            </h1>
+
+            <p>
+                Help newcomers settle by delivering essential kits safely and on time.
+            </p>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="bg-full bg-light" style="padding-bottom:6rem;">
+        <div style="max-width:800px;margin:auto;padding:0 1rem;">
+            <div class="glass-card" style="padding:3rem;">
+
+                <form id="delivery-form" class="waitlist-form">
+
+                    <h3>Basic Information</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" name="name" placeholder="Full Name *" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" name="phone" placeholder="Phone Number *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="email" name="email" placeholder="Email (optional)">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="city_area" placeholder="Current City & Area *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" name="native_place" placeholder="Native Place *" required>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Vehicle Details</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <select name="vehicle_type" required>
+                                <option disabled selected>Vehicle Type *</option>
+                                <option>Mini Van</option>
+                                <option>Closed Delivery Van</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" name="vehicle_number" placeholder="Vehicle Number *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" name="vehicle_model" placeholder="Vehicle Model *" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="capacity" placeholder="Load Capacity *" required>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Delivery Capability</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <select name="delivery_ready" required>
+                                <option disabled selected>Comfortable with deliveries?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" name="areas" placeholder="Preferred Delivery Areas *" required>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Availability</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <select name="availability" required>
+                                <option disabled selected>Availability *</option>
+                                <option>Full-time</option>
+                                <option>Part-time</option>
+                                <option>Weekends</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="number" name="experience" placeholder="Driving Experience (years) *" required>
+                        </div>
+                    </div>
+
+                    <!-- DECLARATION -->
+                    <div class="declaration-group">
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" required>
+                            <span>I confirm information is accurate</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" required>
+                            <span>I agree to Citadyo’s delivery partner guidelines</span>
+                        </label>
+
+                    </div>
+
+                    <p id="form-msg" class="form-message"></p>
+
+                    <button class="btn-primary" style="width:100%;margin-top:2rem;">
+                        Submit Application
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="module" src="/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const form = document.getElementById("delivery-form");
+            const msg = document.getElementById("form-msg");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const data = Object.fromEntries(new FormData(form));
+
+                try {
+
+                    await fetch("http://localhost:3001/api/delivery", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+
+                    emailjs.init("2eQPcf78ba9teOHLW");
+
+                    if (data.email) {
+                        await emailjs.send("service_l0sibnb", "template_g1ov2bk", {
+                            name: data.name,
+                            email: data.email
+                        });
+                    }
+
+                    msg.innerText = "Application submitted successfully 🚀";
+                    msg.style.color = "green";
+
+                    form.reset();
+
+                } catch (err) {
+                    msg.innerText = "Something went wrong ❌";
+                    msg.style.color = "red";
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

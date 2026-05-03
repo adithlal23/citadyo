@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drive with Citadyo | Partner as a Driver</title>
+  <meta name="description" content="Get consistent trips. Work with verified customers. Grow with Citadyo." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/work-with-us.html">Work With Us</a></li>
+        <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: auto; padding-top: 10rem; padding-bottom: 4rem;">
+    <div class="hero-content fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="badge">Partner Network</div>
+      <h1>Drive with <span class="text-accent">Citadyo.</span></h1>
+      <p style="font-size: 1.5rem; color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Get consistent
+        trips. Work with verified customers. Grow with us.</p>
+      <p>Join a reliable network built for long-term work, not random rides.</p>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="bg-full bg-light" style="padding-bottom: 6rem; padding-top: 2rem;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+      <div class="glass-card fade-in-up" style="padding: 3rem;">
+        <form id="driver-form" class="waitlist-form">
+
+          <!-- Section 1: Basic Information -->
+          <h3 style="margin-bottom: 1.5rem;">1. Basic Information</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="driver-name" name="name" placeholder="Full Name *" required />
+              <span class="inline-error" id="driver-name-error"></span>
+            </div>
+            <div class="input-group">
+              <input type="tel" id="driver-phone" name="phone" placeholder="Phone Number *" required />
+              <span class="inline-error" id="driver-phone-error"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="email" id="driver-email" name="email" placeholder="Email Address (Optional)" />
+            </div>
+            <div class="input-group">
+              <select id="driver-gender" name="gender"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);">
+                <option value="" disabled selected>Select Gender (Optional)</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="driver-city-area" name="city_area"
+                placeholder="Current City & Area (Eg. Kothrud, Pune) *" required />
+            </div>
+            <div class="input-group">
+              <input type="text" id="driver-native-place" name="native_place"
+                placeholder="Native Place (Eg. Nashik, Maharashtra) *" required />
+            </div>
+          </div>
+
+          <!-- Section 2: Vehicle Details -->
+          <h3 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">2. Vehicle Details</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="driver-vehicle-number" name="vehicle_number" placeholder="Vehicle Number *"
+                required />
+            </div>
+            <div class="input-group">
+              <input type="text" id="driver-car-model" name="car_model" placeholder="Car Model (Eg. Swift Dzire) *"
+                required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <select id="driver-vehicle-type" name="vehicle_type"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Select Vehicle Type *</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <select id="driver-ac-type" name="ac_type"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>AC Availability *</option>
+                <option value="AC">AC</option>
+                <option value="Non-AC">Non-AC</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section 3: Driving Experience -->
+          <h3 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">3. Driving Experience</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <select id="driver-exp-years" name="experience_years"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Years of Driving Experience *</option>
+                <option value="1 year">1 year</option>
+                <option value="2 years">2 years</option>
+                <option value="3 years">3 years</option>
+                <option value="5+ years">5+ years</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <select id="driver-airport-exp" name="airport_experience"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Airport pickup experience? *</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section 4: Work Preference -->
+          <h3 style="margin-top: 2.5rem; margin-bottom: 0.5rem;">4. Work Preference</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem;">In some cases, customers
+            may need small support beyond driving.</p>
+          <div class="form-row">
+            <div class="input-group" style="width: 100%;">
+              <select id="driver-work-pref" name="work_preference"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);"
+                required>
+                <option value="" disabled selected>Are you comfortable with basic assistance? *</option>
+                <option value="Yes, comfortable">Yes, comfortable</option>
+                <option value="No, driving only">No, driving only</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section 5: Language Skills -->
+          <h3 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">5. Language Skills</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="driver-lang-primary" name="primary_language" placeholder="Primary Language *"
+                required />
+              <span style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; display: block;">Select
+                your native language</span>
+            </div>
+            <div class="input-group">
+              <input type="text" id="driver-lang-sec" name="secondary_language" placeholder="Secondary Language *"
+                required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="driver-lang-other" name="other_languages"
+                placeholder="Other Languages (Optional)" />
+            </div>
+          </div>
+
+          <!-- Section 6: Document Upload -->
+          <h3 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">6. Document Upload</h3>
+          <div class="form-row">
+            <div class="input-group" style="width: 100%;">
+              <label for="driver-license"
+                style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.75rem; display: block; font-weight: 500;">Upload
+                Driving License *</label>
+              <input type="file" id="driver-license" name="driving_license" accept="image/*,.pdf"
+                style="padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); width: 100%; color: var(--text-primary); font-family: var(--font-body);"
+                required />
+              <span class="inline-error" id="driver-license-error"></span>
+            </div>
+          </div>
+
+          <!-- Section 7: Declaration -->
+          <div class="form-row" style="margin-top: 2.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+            <input type="checkbox" id="driver-declaration" name="declaration"
+              style="margin-top: 0.25rem; width: 1.2rem; height: 1.2rem; accent-color: var(--accent);" required />
+            <label for="driver-declaration" style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.5;">
+              I confirm that the information provided is true and I agree to Citadyo’s partner guidelines. *
+            </label>
+          </div>
+          <span class="inline-error" id="driver-declaration-error" style="margin-left: 2rem;"></span>
+
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 2rem;">Submit Application</button>
+          <p id="driver-form-message" class="form-message" style="margin-top: 0.5rem; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo"><img src="/logo.png" alt="Citadyo Logo"></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/work-with-us.html">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("2eQPcf78ba9teOHLW");
+  </script>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

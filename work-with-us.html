@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work With Citadyo | Central Hub</title>
+  <meta name="description"
+    content="Join Citadyo in building a better way for people to settle into new cities. Explore various partnership and associate roles." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .role-card {
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem;
+      border-radius: 24px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      text-align: left;
+      cursor: pointer;
+      text-decoration: none;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .role-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .role-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-3d);
+    }
+
+    .role-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .role-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(13, 148, 136, 0.08);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .role-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .role-card p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .role-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: gap 0.3s ease;
+    }
+
+    .role-card:hover .role-cta {
+      gap: 0.75rem;
+    }
+
+    .trust-section {
+      background: rgba(13, 148, 136, 0.03);
+      border: 1px solid rgba(13, 148, 136, 0.1);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      margin: 4rem auto;
+      max-width: 800px;
+    }
+
+    .closing-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .closing-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/work-with-us.html" class="active" style="color: var(--accent); font-weight: 600;">Work With Us</a>
+        </li>
+        <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: auto; padding-top: 10rem; padding-bottom: 4rem;">
+    <div class="hero-content fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="badge">Careers & Partnerships</div>
+      <h1>Work With <span class="text-accent">Citadyo.</span></h1>
+      <p style="font-size: 1.5rem; color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Join us in
+        building a better way for people to settle into new cities.</p>
+      <p>Whether you're looking to guide newcomers, provide logistics support, or invest in our vision, there are
+        multiple ways we can collaborate to make relocation seamless.</p>
+    </div>
+  </section>
+
+  <!-- Role Selection Section -->
+  <section class="bg-full bg-light" style="padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="section-header fade-in">
+      <h2>Find your role</h2>
+      <p>Explore opportunities to partner and grow with the Citadyo ecosystem.</p>
+    </div>
+
+    <div class="role-grid fade-in-up">
+
+      <!-- 1. Associate -->
+      <a href="/associate.html" class="glass-card role-card">
+        <div class="role-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Become an Associate</h3>
+        <p>Help newcomers settle and earn while building meaningful local connections in your city.</p>
+        <div class="role-cta">Apply as Associate <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg></div>
+      </a>
+
+      <!-- 2. Driver -->
+      <a href="/driver.html" class="glass-card role-card">
+        <div class="role-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M19 11v-3a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+            <circle cx="7" cy="16" r="1"></circle>
+            <circle cx="17" cy="16" r="1"></circle>
+          </svg>
+        </div>
+        <h3>Partner as a Driver</h3>
+        <p>Provide reliable pickup and transit support for new arrivals directly from the airport or station.</p>
+        <div class="role-cta">Join as Driver <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg></div>
+      </a>
+
+      <!-- 3. Rental Partners -->
+      <a href="/rental.html" class="glass-card role-card">
+        <div class="role-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <h3>Rental Partners</h3>
+        <p>Offer vehicles with or without drivers to facilitate smooth logistics for our city operations.</p>
+        <div class="role-cta">Partner With Us <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg></div>
+      </a>
+
+      <!-- 4. Delivery Partners -->
+      <a href="delivery.html" class="glass-card role-card">
+        <div class="role-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+        </div>
+        <h3>Delivery Partners</h3>
+        <p>Help deliver essential settling kits securely across the city directly to newcomers' doorsteps.</p>
+        <div class="role-cta">Join Delivery Network <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg></div>
+      </a>
+
+      <!-- 5. Investors -->
+      <a href="/investors.html" class="glass-card role-card">
+        <div class="role-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h3>Investors</h3>
+        <p>Be a pivotal part of building the ecosystem that redefines modern relocation.</p>
+        <div class="role-cta">Explore Investment <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section style="padding: 0 2rem;">
+    <div class="trust-section fade-in">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      <h3 style="margin-bottom: 0.5rem;">Quality & Safety First</h3>
+      <p style="margin-bottom: 0;">We review all applications carefully to ensure the highest standard of safety and
+        quality for our community.</p>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works bg-full bg-white" style="padding-top: 4rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>How it works</h2>
+      <p>Three simple steps to start collaborating with us.</p>
+    </div>
+    <div class="steps-container">
+      <div class="step fade-in-up" style="animation-delay: 0.1s">
+        <div class="step-number">1</div>
+        <h3>Choose your role</h3>
+        <p>Select the partnership or associate path that aligns with your skills and goals.</p>
+      </div>
+      <div class="step fade-in-up" style="animation-delay: 0.2s">
+        <div class="step-number">2</div>
+        <h3>Fill the form</h3>
+        <p>Provide your details through our simple, tailored application process.</p>
+      </div>
+      <div class="step fade-in-up" style="animation-delay: 0.3s">
+        <div class="step-number">3</div>
+        <h3>We review & connect</h3>
+        <p>Our team will review your application and reach out to get you onboarded.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing Section -->
+  <section class="closing-section fade-in">
+    <h2>Every great journey starts with the <span class="text-accent">right people.</span> Let's build it together.</h2>
+    <div style="margin-top: 3rem;">
+      <a href="#navbar" class="btn-primary">View Roles</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/work-with-us.html">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

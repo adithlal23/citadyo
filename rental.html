@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rental Partners | Citadyo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="/logo.png" />
+                <span class="brand-name">Citadyo</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/#how-it-works">How it Works</a></li>
+                <li><a href="/work-with-us.html">Work With Us</a></li>
+                <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height:auto; padding-top:8rem; padding-bottom:3rem;">
+        <div class="hero-content" style="max-width:750px;margin:auto;text-align:center;">
+            <div class="badge">Partner Network</div>
+
+            <h1 style="line-height:1.2;font-size:3rem;">
+                Partner with <span class="text-accent">Citadyo.</span>
+            </h1>
+
+            <p style="margin-top:1rem;font-size:1.1rem;color:var(--text-secondary);">
+                Work with us to support students and professionals moving into new cities.
+            </p>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="bg-full bg-light" style="padding:4rem 0;">
+        <div style="max-width:800px;margin:auto;">
+            <div class="glass-card" style="padding:3rem;">
+
+                <form id="rental_partners" class="waitlist-form">
+
+                    <h3>Business Information</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" placeholder="Company Name *" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Owner / Manager Name *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="email" placeholder="Business Email (optional)">
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" placeholder="Contact Number *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" placeholder="City & Area (Eg. Kothrud, Pune) *" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Business Address *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" placeholder="Website / Social Link">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Services Offered</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <select required>
+                                <option disabled selected>Select Service Type *</option>
+                                <option>Self-drive rentals</option>
+                                <option>Cab with driver</option>
+                                <option>Both</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p style="margin:1rem 0;">Use Cases</p>
+
+                    <div class="form-row">
+                        <label><input type="checkbox"> Airport transfers</label>
+                        <label><input type="checkbox"> Daily rentals</label>
+                        <label><input type="checkbox"> Outstation trips</label>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Fleet Info</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="number" placeholder="Number of Vehicles *" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label><input type="checkbox"> Hatchback</label>
+                        <label><input type="checkbox"> Sedan</label>
+                        <label><input type="checkbox"> SUV</label>
+                        <label><input type="checkbox"> Premium</label>
+                    </div>
+
+                    <h3 style="margin-top:2rem;">Partnership Fit</h3>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <select required>
+                                <option disabled selected>Open to pilot collaboration?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <select required>
+                                <option disabled selected>Provide vehicles on demand?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <textarea placeholder="Experience with platforms/startups (optional)"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <textarea placeholder="Why do you want to partner with Citadyo?"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="declaration-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" required>
+                            <span>I confirm information is accurate and true to best of my knowledge.</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" required>
+                            <span>I agree to collaborate under pilot-based, non-exclusive partnership terms.</span>
+                        </label>
+                    </div>
+                    <div id="form-message" style="
+    display:none;
+    padding:12px;
+    margin-top:15px;
+    border-radius:8px;
+    background:#d1fae5;
+    color:#065f46;
+    font-weight:500;
+    text-align:center;
+">
+                        Application submitted successfully
+                    </div>
+
+                    <button class="btn-primary" style="width:100%;margin-top:2rem;">
+                        Submit Application
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="module" src="/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            emailjs.init("2eQPcf78ba9teOHLW");
+
+            const form = document.getElementById("rental_partners");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const data = {
+                    company_name: form.querySelectorAll("input")[0].value,
+                    owner_name: form.querySelectorAll("input")[1].value,
+                    email: form.querySelectorAll("input")[2].value,
+                    phone: form.querySelectorAll("input")[3].value,
+                    city_area: form.querySelectorAll("input")[4].value,
+                    address: form.querySelectorAll("input")[5].value,
+                    website: form.querySelectorAll("input")[6].value,
+
+                    service_type: form.querySelector("select").value,
+                    vehicle_count: form.querySelector('input[type="number"]').value,
+
+                    experience: form.querySelectorAll("textarea")[0].value,
+                    motivation: form.querySelectorAll("textarea")[1].value
+                };
+
+                try {
+
+                    // 🔥 EMAILJS FIRST
+                    await emailjs.send("service_l0sibnb", "template_g1ov2bk", {
+                        name: data.owner_name,
+                        email: data.email
+                    });
+
+                    // ✅ THEN BACKEND
+                    const res = await fetch("http://localhost:3001/api/rental", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const msg = document.getElementById("form-message");
+
+                    if (res.ok) {
+                        msg.style.display = "block";
+                        msg.style.background = "#d1fae5";
+                        msg.style.color = "#065f46";
+                        msg.innerText = "Application submitted successfully 🚀";
+
+                        form.reset();
+                    } else {
+                        msg.style.display = "block";
+                        msg.style.background = "#fee2e2";
+                        msg.style.color = "#991b1b";
+                        msg.innerText = "Something went wrong. Please try again.";
+                    }
+
+                } catch (err) {
+                    console.error(err);
+                    const msg = document.getElementById("form-message");
+                    msg.style.display = "block";
+                    msg.style.background = "#fee2e2";
+                    msg.style.color = "#991b1b";
+                    msg.innerText = "Server error. Please try again.";
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

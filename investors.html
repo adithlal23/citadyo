@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citadyo | Investors</title>
+  <meta name="description"
+    content="Invest in Citadyo. Join us in making relocation simple, stress-free, and welcoming for young professionals globally." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/#guide">Become a Guide</a></li>
+        <li><a href="/#home" class="btn-primary-sm">Join Waitlist</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: auto; padding-top: 10rem; padding-bottom: 4rem;">
+    <div class="hero-content fade-in" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="badge">Invest in Citadyo</div>
+      <h1>Back the future of <span class="text-accent">relocation.</span></h1>
+      <p>Join us in making relocation simple, stress-free, and welcoming for students and young professionals globally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="bg-full bg-light" style="padding-bottom: 6rem; padding-top: 2rem;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+      <div class="glass-card fade-in-up" style="padding: 3rem;">
+        <form id="investor-form" class="waitlist-form">
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="inv-name" name="name" placeholder="Full Name *" required />
+              <span class="inline-error" id="inv-name-error"></span>
+            </div>
+            <div class="input-group">
+              <input type="email" id="inv-email" name="email" placeholder="Email Address *" required />
+              <span class="inline-error" id="inv-email-error"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="tel" id="inv-phone" name="phone" placeholder="Phone Number" />
+            </div>
+            <div class="input-group">
+              <input type="tel" id="inv-whatsapp" name="whatsapp_number" placeholder="WhatsApp Number" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="inv-linkedin" name="linkedin_url" placeholder="LinkedIn URL" />
+            </div>
+            <div class="input-group">
+              <input type="text" id="inv-location" name="location" placeholder="Location (City, Country)" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="inv-org" name="organization" placeholder="Organization / Firm" />
+            </div>
+            <div class="input-group">
+              <input type="text" id="inv-role" name="role" placeholder="Your Role" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <select id="inv-profile" name="profile"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);">
+                <option value="" disabled selected>Select Investor Profile</option>
+                <option value="Angel">Angel Investor</option>
+                <option value="VC">Venture Capitalist</option>
+                <option value="Syndicate">Syndicate</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <select id="inv-invested" name="invested_before"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);">
+                <option value="" disabled selected>Invested in early-stage before?</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <input type="text" id="inv-interest" name="interest"
+                placeholder="Investment Interest / Ticket Size (e.g. $10k - $50k)" />
+            </div>
+            <div class="input-group">
+              <select id="inv-contact" name="contact_preference"
+                style="width: 100%; padding: 0.875rem 1.25rem; border-radius: 12px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); color: var(--text-primary); font-family: var(--font-body); font-size: 1rem; transition: var(--transition);">
+                <option value="" disabled selected>Preferred Contact Method</option>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+                <option value="WhatsApp">WhatsApp</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Submit Investor
+            Application</button>
+          <p id="investor-form-message" class="form-message" style="margin-top: 0.5rem; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo"><img src="/logo.png" alt="Citadyo Logo"></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#careers">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("2eQPcf78ba9teOHLW");
+  </script>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
