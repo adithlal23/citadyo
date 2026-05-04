@@ -1,10 +1,11 @@
 import './style.css'
 
 
-
 const supabaseUrl = 'https://rdqyrdtzspgnkquvixit.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkcXlyZHR6c3BnbmtxdXZpeGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NDQ3ODgsImV4cCI6MjA5MzIyMDc4OH0.HHD78-sFISK-RLqrb2EdmOtavAO1PxeqAfi2EAGanto'
-const supabase = window.supabase.createClient(url, key)
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener('DOMContentLoaded', () => {
   // Sticky Navbar Logic
@@ -731,12 +732,12 @@ if (rentalForm) {
     };
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/rental_partners`, {
+      const res = await fetch(`${supabaseUrl}/rest/v1/rental_partners`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`
+          "apikey": supabaseKey,
+          "Authorization": `Bearer ${supabaseKey}`
         },
         body: JSON.stringify(data)
       });

@@ -1,366 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arrival Assistance | Citadyo</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="/#how-it-works">How it Works</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-            <div class="dropdown-content glass">
-              <a href="/arrival-assistance.html">Arrival Assistance</a>
-              <a href="/settling-kits.html">Settling Kits</a>
-              <a href="/ask-a-senior.html">Ask a Senior</a>
-            </div>
-          </li>
-          <li><a href="/#guide">Become a Guide</a></li>
-          <li><a href="/#home" class="btn-primary-sm">Get Early Access</a></li>
-        </ul>
-        <div class="mobile-menu-btn">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
-    </nav>
 
-    <!-- 1. Hero Section -->
-    <section class="hero" style="min-height: 70vh; padding-top: calc(var(--nav-height) + 6rem); justify-content: center;">
-       <div class="hero-content fade-in" style="max-width: 900px; text-align: center; margin: 0 auto; flex: none;">
-         <div class="badge">🚀 Launching Soon</div>
-         <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem);">Settle into your new city — <span class="text-accent">smoothly, safely, confidently.</span></h1>
-         <p style="font-size: 1.25rem;">From the moment you arrive to your first day feeling comfortable, Citadyo gives you structured, human support — step by step.</p>
-         <div style="margin-top: 2.5rem;">
-           <a href="/#home" class="btn-primary">Get Early Access</a>
-         </div>
-       </div>
-    </section>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrival Assistance | Citadyo</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
 
-    <!-- 2. Introduction Section -->
-    <section class="bg-full bg-light" style="padding-top: 5rem; padding-bottom: 5rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-       <div class="fade-in-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
-         <h2 style="font-size: 1.75rem; font-weight: 400; line-height: 1.5; color: var(--text-primary);">
-           A guided, real-world support experience that helps you settle into your new city from day one — <strong style="color: var(--accent);">with a local by your side.</strong>
-         </h2>
-       </div>
-    </section>
-
-    <!-- 3. Tiers Section -->
-    <section class="services bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
-       <div class="section-header fade-in">
-         <h2>Choose your arrival experience</h2>
-         <p>Find the perfect level of support for your arrival day.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-         
-         <div class="service-card glass fade-in-up" style="display: flex; flex-direction: column; animation-delay: 0.1s;">
-            <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
-               <span style="font-size: 2rem;">👤</span>
-            </div>
-            <h3 style="font-size: 1.75rem;">Settle Solo</h3>
-            <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Independent, guided, and smooth."</strong><br><br>Perfect for the solo traveler who just needs a reliable guide for the initial transition.</p>
-            <button class="btn-primary-sm open-modal" data-title="Settle Solo" data-tagline="Independent, guided, and smooth." data-categories='["🚕 Transit navigation", "🔑 Check-in support", "🥪 First meal guidance", "🗺️ Basic orientation"]' style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View Details</button>
-         </div>
-
-         <div class="service-card glass fade-in-up" style="display: flex; flex-direction: column; border-color: var(--accent); box-shadow: 0 0 0 1px rgba(13,148,136,0.3), var(--shadow-lg); animation-delay: 0.2s;">
-            <div class="badge" style="background: var(--accent); color: white;">Most Popular</div>
-            <div class="icon-wrapper" style="margin-bottom: 1.5rem; margin-top: 1rem;">
-               <span style="font-size: 2rem;">👥</span>
-            </div>
-            <h3 style="font-size: 1.75rem;">Settle Together</h3>
-            <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Flexible, shared, and comfortable."</strong><br><br>Ideal for friends or couples moving in together.</p>
-            <button class="btn-primary open-modal" data-title="Settle Together" data-tagline="Flexible, shared, and comfortable." data-categories='["🚕 Group transit support", "🔑 Check-in support", "🍽️ Shared meal guidance", "🗺️ Extended orientation"]' style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View Details</button>
-         </div>
-
-         <div class="service-card glass fade-in-up" style="display: flex; flex-direction: column; animation-delay: 0.3s;">
-            <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
-               <span style="font-size: 2rem;">👨‍👩‍👧‍👦</span>
-            </div>
-            <h3 style="font-size: 1.75rem;">Settle Family</h3>
-            <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Complete, guided experience for families."</strong><br><br>Comprehensive support tailored for families arriving with luggage and children.</p>
-            <button class="btn-primary-sm open-modal" data-title="Settle Family" data-tagline="Complete, guided experience for families." data-categories='["🚐 Family transit coordination", "🔑 Extended check-in help", "🛒 Grocery run assist", "🗺️ Neighborhood tour"]' style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View Details</button>
-         </div>
-         
-       </div>
-    </section>
-
-    <!-- NEW: 4. How it works -->
-    <section class="bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-       <div class="section-header fade-in">
-         <h2>How it works</h2>
-         <p>The journey to your stress-free arrival.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center;">
-         <div class="fade-in-up">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📝</span>
-           <h3 style="font-size: 1.25rem; font-weight: 600;">1. Tell us about your move</h3>
-           <p style="font-size: 0.95rem;">Fill a quick form with your city, arrival date, and preferences.</p>
-         </div>
-         <div class="fade-in-up" style="animation-delay: 0.1s">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🤝</span>
-           <h3 style="font-size: 1.25rem; font-weight: 600;">2. We match you</h3>
-           <p style="font-size: 0.95rem;">Based on your responses, we assign the right associate and recommend the best plan for you.</p>
-         </div>
-         <div class="fade-in-up" style="animation-delay: 0.2s">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🗓️</span>
-           <h3 style="font-size: 1.25rem; font-weight: 600;">3. Plan your arrival</h3>
-           <p style="font-size: 0.95rem;">We coordinate pickup, timing, and your first-day flow aligned with your schedule.</p>
-         </div>
-         <div class="fade-in-up" style="animation-delay: 0.3s">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🧭</span>
-           <h3 style="font-size: 1.25rem; font-weight: 600;">4. Guided day, your way</h3>
-           <p style="font-size: 0.95rem;">Your associate supports you through arrival, check-in, routes, and local essentials.</p>
-         </div>
-         <div class="fade-in-up" style="animation-delay: 0.4s">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">✨</span>
-           <h3 style="font-size: 1.25rem; font-weight: 600;">5. You’re settled</h3>
-           <p style="font-size: 0.95rem;">By the end of the experience, you’re comfortable, oriented, and ready to start your new life.</p>
-         </div>
-       </div>
-       <div class="fade-in-up" style="text-align: center; margin-top: 4rem; padding-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-         <p style="font-size: 1.2rem; font-weight: 500; color: var(--accent);">No confusion. No last-minute stress. Just a structured first day.</p>
-       </div>
-    </section>
-
-    <!-- 5. Experience Flow Section -->
-    <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
-       <div class="section-header fade-in">
-         <h2>Your arrival flow</h2>
-         <p>A structured, stress-free path from the terminal to your new home.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; perspective: none;">
-         
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📍</span>
-           <h4 style="font-weight: 600;">Pickup coordination</h4>
-         </div>
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🥪</span>
-           <h4 style="font-weight: 600;">First meal</h4>
-         </div>
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🔑</span>
-           <h4 style="font-weight: 600;">Check-in support</h4>
-         </div>
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🗺️</span>
-           <h4 style="font-weight: 600;">Route orientation</h4>
-         </div>
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">☕</span>
-           <h4 style="font-weight: 600;">Food spots introduction</h4>
-         </div>
-         <div class="glass-card fade-in-up" style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">👋</span>
-           <h4 style="font-weight: 600;">Handoff</h4>
-         </div>
-         
-       </div>
-    </section>
-
-    <!-- 6. Night Arrival Section -->
-    <section class="bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-       <div class="fade-in-up glass-card" style="max-width: 900px; margin: 0 auto; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; border-radius: 32px; background: var(--bg-primary);">
-         <div>
-           <div class="badge badge-outline" style="margin-bottom: 1rem;">Special Case</div>
-           <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Arriving late?</h2>
-           <p style="font-size: 1.1rem; color: var(--text-secondary);">We adapt our support for night arrivals so you aren't left stranded in the dark.</p>
-         </div>
-         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-           <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color);">
-             <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">🌙 Day 1: Night Basics</h4>
-             <p style="font-size: 0.95rem;">We ensure you get to your room safely, grab a quick bite, and get settled for the night.</p>
-           </div>
-           <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color);">
-             <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">☀️ Day 2: Full Guidance</h4>
-             <p style="font-size: 0.95rem;">Your local guide follows up the next morning for your neighborhood tour and orientation.</p>
-           </div>
-         </div>
-       </div>
-    </section>
-
-    <!-- 7. Flexibility Section -->
-    <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
-       <div class="section-header fade-in">
-         <h2>Built around flexibility</h2>
-         <p>You’re in control. We guide you without dictating your pace.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-         <div class="fade-in-up" style="text-align: center;">
-           <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🚕</span>
-           <h3 style="font-size: 1.25rem;">Transport choice</h3>
-           <p style="font-size: 0.95rem;">Take a cab, hop on the metro, or walk — whatever suits your comfort and luggage size.</p>
-         </div>
-         <div class="fade-in-up" style="text-align: center;">
-           <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🏙️</span>
-           <h3 style="font-size: 1.25rem;">Optional orientation</h3>
-           <p style="font-size: 0.95rem;">Skip the city tour if you’re tired. We adapt to your energy levels.</p>
-         </div>
-         <div class="fade-in-up" style="text-align: center;">
-           <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">⏳</span>
-           <h3 style="font-size: 1.25rem;">Flexible timing</h3>
-           <p style="font-size: 0.95rem;">Delays happen. Your local associate adjusts their schedule to your actual arrival.</p>
-         </div>
-         <div class="fade-in-up" style="text-align: center;">
-           <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🙌</span>
-           <h3 style="font-size: 1.25rem;">No forced dependency</h3>
-           <p style="font-size: 0.95rem;">We give you the tools and lay of the land, then let you take the reins.</p>
-         </div>
-       </div>
-    </section>
-
-    <!-- 8. Associate On-Demand Section -->
-    <section class="bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-       <div class="section-header fade-in">
-         <h2>Need help beyond day one?</h2>
-         <p>Our Associate On-Demand service has you covered.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-         <div class="service-card glass fade-in-up" style="text-align: center;">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📅</span>
-           <h3 style="font-size: 1.4rem;">Book locals anytime</h3>
-           <p>Schedule a local associate to help with errands, shopping, or deep dives into specific neighborhoods.</p>
-         </div>
-         <div class="service-card glass fade-in-up" style="text-align: center;">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🔄</span>
-           <h3 style="font-size: 1.4rem;">Extend support</h3>
-           <p>Not ready to fly solo? Easily extend your arrival assistance package for extra days of guidance.</p>
-         </div>
-         <div class="service-card glass fade-in-up" style="text-align: center;">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">⏱️</span>
-           <h3 style="font-size: 1.4rem;">Flexible time blocks</h3>
-           <p>Hire associates by the hour. Only pay for the support you actually need, when you need it.</p>
-         </div>
-       </div>
-    </section>
-
-    <!-- 9. Movement & Meals Section -->
-    <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
-       <div class="section-header fade-in">
-         <h2>Movement & Meals</h2>
-         <p>Learn the city naturally.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-         <div class="fade-in-up" style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🚶</span>
-           <h3 style="font-size: 1.4rem;">Walk-based learning</h3>
-           <p>We emphasize walking routes so you memorize your surroundings physically, not just on a map.</p>
-         </div>
-         <div class="fade-in-up" style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;"> آزادی </span>
-           <h3 style="font-size: 1.4rem;">Freedom to choose</h3>
-           <p>Pick the cuisine or vibe you’re in the mood for. Your first meal in a new city is entirely your choice.</p>
-         </div>
-         <div class="fade-in-up" style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-           <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">💡</span>
-           <h3 style="font-size: 1.4rem;">Curated suggestions</h3>
-           <p>Unsure where to eat? Your associate will provide hand-picked local favorites based on your preferences.</p>
-         </div>
-       </div>
-    </section>
-
-    <!-- 10. Trust Principles Section -->
-    <section class="bg-full bg-light" style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
-       <div class="section-header fade-in">
-         <h2>Our Trust Principles</h2>
-         <p>The foundation of every Citadyo experience.</p>
-       </div>
-       <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center;">
-         <div class="fade-in-up">
-           <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-           </div>
-           <h3 style="font-size: 1.4rem;">Structured & time-bound</h3>
-           <p>Clear itineraries so you know exactly what to expect and when.</p>
-         </div>
-         <div class="fade-in-up">
-           <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-           </div>
-           <h3 style="font-size: 1.4rem;">Guidance, not dependency</h3>
-           <p>We empower you to navigate independently from day two onward.</p>
-         </div>
-         <div class="fade-in-up">
-           <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-           </div>
-           <h3 style="font-size: 1.4rem;">Flexible design</h3>
-           <p>Your move, your way. We adapt our support to your unique needs.</p>
-         </div>
-       </div>
-    </section>
-
-    <!-- 11. Emotional Section & 12. Final CTA -->
-    <section class="hero bg-full bg-tinted" style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 8rem; padding-bottom: 8rem;">
-       <div class="fade-in" style="max-width: 800px; margin-bottom: 3rem;">
-         <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; color: var(--text-primary); margin-bottom: 1.5rem; font-weight: 400;">
-           Your first day in a new city shouldn’t feel uncertain.<br>
-           <strong style="color: var(--accent);">Citadyo makes it structured, guided, and human.</strong>
-         </h2>
-       </div>
-       
-       <div class="fade-in-up" style="background: var(--bg-primary); padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-3d); border: 1px solid var(--border-color); width: 100%; max-width: 500px;">
-         <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Be the first to experience Citadyo</h3>
-         <a href="/#home" class="btn-primary" style="width: 100%;">Get Early Access</a>
-       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-brand">
-          <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
-          <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="/#about">About Us</a></li>
-            <li><a href="/#careers">Careers</a></li>
-            <li><a href="/#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="/#privacy">Privacy Policy</a></li>
-            <li><a href="/#terms">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Citadyo. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <!-- Universal Modal for Packages -->
-    <div class="modal-overlay" id="kitModal">
-      <div class="modal-content">
-        <button class="modal-close" id="closeModal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <div class="modal-body">
-          <h3 class="modal-title" id="modalTitle">Package Name</h3>
-          <p class="modal-tagline" id="modalTagline">Package Tagline</p>
-          <div class="modal-section-title">What's included:</div>
-          <div class="modal-categories" id="modalCategories">
-            <!-- Categories injected here by JS -->
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
           </div>
-          <a href="/#home" class="btn-primary" style="width: 100%; display: block; text-align: center;">Get Early Access</a>
+        </li>
+        <li><a href="/#guide">Become a Guide</a></li>
+        <li><a href="/#home" class="btn-primary-sm">Get Early Access</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. Hero Section -->
+  <section class="hero" style="min-height: 70vh; padding-top: calc(var(--nav-height) + 6rem); justify-content: center;">
+    <div class="hero-content fade-in" style="max-width: 900px; text-align: center; margin: 0 auto; flex: none;">
+      <div class="badge">🚀 Launching Soon</div>
+      <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem);">Settle into your new city — <span class="text-accent">smoothly,
+          safely, confidently.</span></h1>
+      <p style="font-size: 1.25rem;">From the moment you arrive to your first day feeling comfortable, Citadyo gives you
+        structured, human support — step by step.</p>
+      <div style="margin-top: 2.5rem;">
+        <a href="/#home" class="btn-primary">Get Early Access</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Introduction Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 5rem; padding-bottom: 5rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="fade-in-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: 1.75rem; font-weight: 400; line-height: 1.5; color: var(--text-primary);">
+        A guided, real-world support experience that helps you settle into your new city from day one — <strong
+          style="color: var(--accent);">with a citadyo associate by your side.</strong>
+      </h2>
+    </div>
+  </section>
+
+  <!-- 3. Tiers Section -->
+  <section class="services bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Choose your arrival experience</h2>
+      <p>Find the perfect level of support for your arrival day.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+      <div class="service-card glass fade-in-up" style="display: flex; flex-direction: column; animation-delay: 0.1s;">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <span style="font-size: 2rem;">👤</span>
+        </div>
+        <h3 style="font-size: 1.75rem;">Settle Solo</h3>
+        <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Independent, guided, and smooth."</strong><br><br>Perfect
+          for the solo traveler who just needs a reliable guide for the initial transition.</p>
+        <button class="btn-primary-sm open-modal" data-title="Settle Solo"
+          data-tagline="Independent, guided, and smooth."
+          data-categories='["🚕 Transit navigation", "🔑 Check-in support", "🥪 First meal guidance", "🗺️ Basic orientation"]'
+          style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View
+          Details</button>
+      </div>
+
+      <div class="service-card glass fade-in-up"
+        style="display: flex; flex-direction: column; border-color: var(--accent); box-shadow: 0 0 0 1px rgba(13,148,136,0.3), var(--shadow-lg); animation-delay: 0.2s;">
+        <div class="badge" style="background: var(--accent); color: white;">Most Popular</div>
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem; margin-top: 1rem;">
+          <span style="font-size: 2rem;">👥</span>
+        </div>
+        <h3 style="font-size: 1.75rem;">Settle Together</h3>
+        <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Flexible, shared, and comfortable."</strong><br><br>Ideal
+          for friends moving in together.</p>
+        <button class="btn-primary open-modal" data-title="Settle Together"
+          data-tagline="Flexible, shared, and comfortable."
+          data-categories='["🚕 Group transit support", "🔑 Check-in support", "🍽️ Shared meal guidance", "🗺️ Extended orientation"]'
+          style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View
+          Details</button>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="display: flex; flex-direction: column; animation-delay: 0.3s;">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <span style="font-size: 2rem;">👨‍👩‍👧‍👦</span>
+        </div>
+        <h3 style="font-size: 1.75rem;">Settle Family</h3>
+        <p style="flex-grow: 1; margin-bottom: 2rem;"><strong>"Complete, guided experience for
+            families."</strong><br><br>Comprehensive support tailored for families arriving with luggage and children.
+        </p>
+        <button class="btn-primary-sm open-modal" data-title="Settle Family"
+          data-tagline="Complete, guided experience for families."
+          data-categories='["🚐 Family transit coordination", "🔑 Extended check-in help", "🛒 Grocery run assist", "🗺️ Neighborhood tour"]'
+          style="width: 100%; text-align: center; transform: translateZ(20px); border: none; cursor: pointer;">View
+          Details</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEW: 4. How it works -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="section-header fade-in">
+      <h2>How it works</h2>
+      <p>The journey to your stress-free arrival.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center;">
+      <div class="fade-in-up">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📝</span>
+        <h3 style="font-size: 1.25rem; font-weight: 600;">1. Tell us about your move</h3>
+        <p style="font-size: 0.95rem;">Fill a quick form with your city, arrival date, and preferences.</p>
+      </div>
+      <div class="fade-in-up" style="animation-delay: 0.1s">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🤝</span>
+        <h3 style="font-size: 1.25rem; font-weight: 600;">2. We match you</h3>
+        <p style="font-size: 0.95rem;">Based on your responses, we assign the right associate and recommend the best
+          plan for you.</p>
+      </div>
+      <div class="fade-in-up" style="animation-delay: 0.2s">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🗓️</span>
+        <h3 style="font-size: 1.25rem; font-weight: 600;">3. Plan your arrival</h3>
+        <p style="font-size: 0.95rem;">We coordinate pickup, timing, and your first-day flow aligned with your schedule.
+        </p>
+      </div>
+      <div class="fade-in-up" style="animation-delay: 0.3s">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🧭</span>
+        <h3 style="font-size: 1.25rem; font-weight: 600;">4. Guided day, your way</h3>
+        <p style="font-size: 0.95rem;">Your associate supports you through arrival, check-in, routes, and local
+          essentials.</p>
+      </div>
+      <div class="fade-in-up" style="animation-delay: 0.4s">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">✨</span>
+        <h3 style="font-size: 1.25rem; font-weight: 600;">5. You’re settled</h3>
+        <p style="font-size: 0.95rem;">By the end of the experience, you’re comfortable, oriented, and ready to start
+          your new life.</p>
+      </div>
+    </div>
+    <div class="fade-in-up"
+      style="text-align: center; margin-top: 4rem; padding-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 1.2rem; font-weight: 500; color: var(--accent);">No confusion. No last-minute stress. Just a
+        structured first day.</p>
+    </div>
+  </section>
+
+  <!-- 5. Experience Flow Section -->
+  <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Your arrival flow</h2>
+      <p>A structured, stress-free path from the terminal to your new home.</p>
+    </div>
+    <div class="services-grid"
+      style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; perspective: none;">
+
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📍</span>
+        <h4 style="font-weight: 600;">Pickup coordination</h4>
+      </div>
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🥪</span>
+        <h4 style="font-weight: 600;">First meal</h4>
+      </div>
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🔑</span>
+        <h4 style="font-weight: 600;">Check-in support</h4>
+      </div>
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🗺️</span>
+        <h4 style="font-weight: 600;">Route orientation</h4>
+      </div>
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">☕</span>
+        <h4 style="font-weight: 600;">Food spots introduction</h4>
+      </div>
+      <div class="glass-card fade-in-up"
+        style="padding: 1.5rem 1rem; border-radius: 16px; background: var(--bg-secondary);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">👋</span>
+        <h4 style="font-weight: 600;">Handoff</h4>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. Night Arrival Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="fade-in-up glass-card"
+      style="max-width: 900px; margin: 0 auto; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; border-radius: 32px; background: var(--bg-primary);">
+      <div>
+        <div class="badge badge-outline" style="margin-bottom: 1rem;">Special Case</div>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Arriving late?</h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary);">We adapt our support for night arrivals so you
+          aren't left stranded in the dark.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div
+          style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">🌙 Day 1: Night Basics</h4>
+          <p style="font-size: 0.95rem;">We ensure you get to your room safely, grab a quick bite, and get settled for
+            the night.</p>
+        </div>
+        <div
+          style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">☀️ Day 2: Full Guidance</h4>
+          <p style="font-size: 0.95rem;">Your associate follows up the next morning for your neighborhood tour and
+            orientation.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <script type="module" src="/main.js"></script>
-  </body>
+  <!-- 7. Flexibility Section -->
+  <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Built around flexibility</h2>
+      <p>You’re in control. We guide you without dictating your pace.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+      <div class="fade-in-up" style="text-align: center;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🚕</span>
+        <h3 style="font-size: 1.25rem;">Transport choice</h3>
+        <p style="font-size: 0.95rem;">Take a cab, hop on the metro, or walk — whatever suits your comfort and luggage
+          size.</p>
+      </div>
+      <div class="fade-in-up" style="text-align: center;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🏙️</span>
+        <h3 style="font-size: 1.25rem;">Optional orientation</h3>
+        <p style="font-size: 0.95rem;">Skip the city tour if you’re tired. We adapt to your energy levels.</p>
+      </div>
+      <div class="fade-in-up" style="text-align: center;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">⏳</span>
+        <h3 style="font-size: 1.25rem;">Flexible timing</h3>
+        <p style="font-size: 0.95rem;">Delays happen. Your associate adjusts their schedule to your actual arrival.</p>
+      </div>
+      <div class="fade-in-up" style="text-align: center;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🙌</span>
+        <h3 style="font-size: 1.25rem;">No forced dependency</h3>
+        <p style="font-size: 0.95rem;">We give you the tools and lay of the land, then let you take the reins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Associate On-Demand Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="section-header fade-in">
+      <h2>Need help beyond day one?</h2>
+      <p>Our Associate On-Demand service has you covered.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      <div class="service-card glass fade-in-up" style="text-align: center;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📅</span>
+        <h3 style="font-size: 1.4rem;">Book associates anytime</h3>
+        <p>Schedule an associate to help with errands, shopping, or deep dives into specific neighborhoods.</p>
+      </div>
+      <div class="service-card glass fade-in-up" style="text-align: center;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🔄</span>
+        <h3 style="font-size: 1.4rem;">Extend support</h3>
+        <p>Not ready to fly solo? Easily extend your arrival assistance package for extra days of guidance.</p>
+      </div>
+      <div class="service-card glass fade-in-up" style="text-align: center;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">⏱️</span>
+        <h3 style="font-size: 1.4rem;">Flexible time blocks</h3>
+        <p>Hire associates by the hour. Only pay for the support you actually need, when you need it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Movement & Meals Section -->
+  <section class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Movement & Meals</h2>
+      <p>Learn the city naturally.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      <div class="fade-in-up"
+        style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🚶</span>
+        <h3 style="font-size: 1.4rem;">Walk-based learning</h3>
+        <p>We emphasize walking routes so you memorize your surroundings physically, not just on a map.</p>
+      </div>
+      <div class="fade-in-up"
+        style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;"> آزادی </span>
+        <h3 style="font-size: 1.4rem;">Freedom to choose</h3>
+        <p>Pick the cuisine or vibe you’re in the mood for. Your first meal in a new city is entirely your choice.</p>
+      </div>
+      <div class="fade-in-up"
+        style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">💡</span>
+        <h3 style="font-size: 1.4rem;">Curated suggestions</h3>
+        <p>Unsure where to eat? Your associate will provide hand-picked local favorites based on your preferences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Trust Principles Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="section-header fade-in">
+      <h2>Our Trust Principles</h2>
+      <p>The foundation of every Citadyo experience.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center;">
+      <div class="fade-in-up">
+        <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem;">Structured & time-bound</h3>
+        <p>Clear itineraries so you know exactly what to expect and when.</p>
+      </div>
+      <div class="fade-in-up">
+        <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem;">Guidance, not dependency</h3>
+        <p>We empower you to navigate independently from day two onward.</p>
+      </div>
+      <div class="fade-in-up">
+        <div class="icon-wrapper" style="margin: 0 auto 1.5rem auto;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.4rem;">Flexible design</h3>
+        <p>Your move, your way. We adapt our support to your unique needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Emotional Section & 12. Final CTA -->
+  <section class="hero bg-full bg-tinted"
+    style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 8rem; padding-bottom: 8rem;">
+    <div class="fade-in" style="max-width: 800px; margin-bottom: 3rem;">
+      <h2
+        style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; color: var(--text-primary); margin-bottom: 1.5rem; font-weight: 400;">
+        Your first day in a new city shouldn’t feel uncertain.<br>
+        <strong style="color: var(--accent);">Citadyo makes it structured, guided, and human.</strong>
+      </h2>
+    </div>
+
+    <div class="fade-in-up"
+      style="background: var(--bg-primary); padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-3d); border: 1px solid var(--border-color); width: 100%; max-width: 500px;">
+      <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Be the first to experience Citadyo</h3>
+      <a href="/#home" class="btn-primary" style="width: 100%;">Get Early Access</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#careers">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Universal Modal for Packages -->
+  <div class="modal-overlay" id="kitModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-body">
+        <h3 class="modal-title" id="modalTitle">Package Name</h3>
+        <p class="modal-tagline" id="modalTagline">Package Tagline</p>
+        <div class="modal-section-title">What's included:</div>
+        <div class="modal-categories" id="modalCategories">
+          <!-- Categories injected here by JS -->
+        </div>
+        <a href="/#home" class="btn-primary" style="width: 100%; display: block; text-align: center;">Get Early
+          Access</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
