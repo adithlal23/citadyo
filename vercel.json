@@ -1,24 +1,36 @@
 {
     "routes": [
         {
-            "src": "/about",
+            "src": "^/about$",
             "dest": "/about.html"
         },
         {
-            "src": "/associate",
+            "src": "^/associate$",
             "dest": "/associate.html"
         },
         {
-            "src": "/delivery",
+            "src": "^/delivery$",
             "dest": "/delivery.html"
         },
         {
-            "src": "/investors",
+            "src": "^/investors$",
             "dest": "/investors.html"
         },
         {
-            "src": "/(.*)",
-            "dest": "/$1"
+            "src": "^/work-with-us$",
+            "dest": "/work-with-us.html"
+        },
+        {
+            "src": "^/arrival-assistance$",
+            "dest": "/arrival-assistance.html"
+        },
+        {
+            "src": "^/settling-kits$",
+            "dest": "/settling-kits.html"
+        },
+        {
+            "src": "^/ask-a-senior$",
+            "dest": "/ask-a-senior.html"
         }
     ]
 }
