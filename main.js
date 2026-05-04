@@ -1,10 +1,10 @@
 import './style.css'
 
-import { createClient } from '@supabase/supabase-js'
+
 
 const supabaseUrl = 'https://rdqyrdtzspgnkquvixit.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkcXlyZHR6c3BnbmtxdXZpeGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NDQ3ODgsImV4cCI6MjA5MzIyMDc4OH0.HHD78-sFISK-RLqrb2EdmOtavAO1PxeqAfi2EAGanto'
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabase = window.supabase.createClient(url, key)
 
 document.addEventListener('DOMContentLoaded', () => {
   // Sticky Navbar Logic
