@@ -1,36 +1,36 @@
 {
-    "routes": [
+    "rewrites": [
         {
-            "src": "^/about$",
-            "dest": "/about.html"
+            "source": "/about",
+            "destination": "/about.html"
         },
         {
-            "src": "^/arrival-assistance$",
-            "dest": "/arrival-assistance.html"
+            "source": "/arrival-assistance",
+            "destination": "/arrival-assistance.html"
         },
         {
-            "src": "^/settling-kits$",
-            "dest": "/settling-kits.html"
+            "source": "/settling-kits",
+            "destination": "/settling-kits.html"
         },
         {
-            "src": "^/ask-a-senior$",
-            "dest": "/ask-a-senior.html"
+            "source": "/ask-a-senior",
+            "destination": "/ask-a-senior.html"
         },
         {
-            "src": "^/work-with-us$",
-            "dest": "/work-with-us.html"
+            "source": "/work-with-us",
+            "destination": "/work-with-us.html"
         },
         {
-            "src": "^/associate$",
-            "dest": "/associate.html"
+            "source": "/associate",
+            "destination": "/associate.html"
         },
         {
-            "src": "^/delivery$",
-            "dest": "/delivery.html"
+            "source": "/delivery",
+            "destination": "/delivery.html"
         },
         {
-            "src": "^/investors$",
-            "dest": "/investors.html"
+            "source": "/investors",
+            "destination": "/investors.html"
         }
     ]
 }
