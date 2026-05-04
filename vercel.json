@@ -1,0 +1,24 @@
+{
+    "routes": [
+        {
+            "src": "/about",
+            "dest": "/about.html"
+        },
+        {
+            "src": "/associate",
+            "dest": "/associate.html"
+        },
+        {
+            "src": "/delivery",
+            "dest": "/delivery.html"
+        },
+        {
+            "src": "/investors",
+            "dest": "/investors.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
+        }
+    ]
+}
