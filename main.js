@@ -1,8 +1,8 @@
 import './style.css'
 
 
-const supabaseUrl = 'https://rdqyrdtzspgnkquvixit.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkcXlyZHR6c3BnbmtxdXZpeGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NDQ3ODgsImV4cCI6MjA5MzIyMDc4OH0.HHD78-sFISK-RLqrb2EdmOtavAO1PxeqAfi2EAGanto'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(supabaseUrl, supabaseKey);
