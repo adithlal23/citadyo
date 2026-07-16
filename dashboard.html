@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | Citadyo</title>
+  <meta name="description" content="Access your Citadyo user account dashboard. View active settling kits, arrival bookings, matching statuses, and chat sessions." />
+  <link rel="canonical" href="https://citadyo.com/dashboard.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://citadyo.com/dashboard.html" />
+  <meta property="og:title" content="User Dashboard | Citadyo" />
+  <meta property="og:description" content="Access your Citadyo user account dashboard. View active settling kits, arrival bookings, matching statuses, and chat sessions." />
+  <meta property="og:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://citadyo.com/dashboard.html" />
+  <meta property="twitter:title" content="User Dashboard | Citadyo" />
+  <meta property="twitter:description" content="Access your Citadyo user account dashboard. View active settling kits, arrival bookings, matching statuses, and chat sessions." />
+  <meta property="twitter:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="dashboard-body">
+  <!-- Session Loading Overlay -->
+  <div id="dashboard-loader">
+    <div class="loader-spinner"></div>
+    <p>Securing session...</p>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/logo.png" alt="Citadyo Logo"> 
+        <span class="brand-name">Citadyo</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="nav-desktop-menu">
+        <div class="profile-dropdown-trigger" id="profile-dropdown-btn">
+          <img id="nav-avatar" src="https://i.pravatar.cc/100?img=5" alt="User Avatar" class="nav-profile-avatar">
+          <span id="nav-user-name" class="nav-profile-name">User</span>
+          <i data-lucide="chevron-down" class="nav-chevron-icon"></i>
+        </div>
+        
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown glass" id="profile-dropdown-menu">
+          <div class="dropdown-user-info">
+            <strong id="dropdown-name">User Name</strong>
+            <span id="dropdown-email">user@email.com</span>
+          </div>
+          <hr class="dropdown-divider">
+          <a href="/dashboard.html" class="dropdown-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+          <a href="/account.html" class="dropdown-item"><i data-lucide="user"></i> My Account</a>
+          <a href="#" class="dropdown-item disabled"><i data-lucide="help-circle"></i> Support <span class="badge-soon">Soon</span></a>
+          <hr class="dropdown-divider">
+          <a href="#" class="dropdown-item logout-item" id="logout-btn"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="mobile-menu-btn" id="mobile-menu-toggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <div class="mobile-user-profile">
+          <img id="mobile-nav-avatar" src="https://i.pravatar.cc/100?img=5" alt="User Avatar" class="mobile-profile-avatar">
+          <div>
+            <strong id="mobile-dropdown-name">User Name</strong>
+            <span id="mobile-dropdown-email">user@email.com</span>
+          </div>
+        </div>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+        <li><a href="/account.html"><i data-lucide="user"></i> My Account</a></li>
+        <li><a href="#" class="disabled"><i data-lucide="help-circle"></i> Support (Coming Soon)</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a href="#" class="logout-item" id="mobile-logout-btn"><i data-lucide="log-out"></i> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Layout -->
+  <main class="dashboard-main-container">
+    <div class="dashboard-content-layout">
+      <!-- Left / Main Column -->
+      <div class="dashboard-main-col">
+        <!-- Hero Greeting Section -->
+        <div class="dashboard-hero-card glass">
+          <div class="hero-greeting-text">
+            <h4 class="time-of-day-text" id="time-of-day-greeting">Good Morning</h4>
+            <h1 class="welcome-heading">👋 Welcome back, <span id="user-first-name">User</span></h1>
+            <p class="hero-subheading">"Let's make your move stress-free."</p>
+          </div>
+          <div class="hero-greeting-avatar-container">
+            <img id="hero-avatar" src="https://i.pravatar.cc/100?img=5" alt="User Profile" class="hero-profile-avatar">
+          </div>
+        </div>
+
+        <!-- Journey Progress Tracker -->
+        <div class="dashboard-card progress-journey-card">
+          <div class="card-header">
+            <h3>Your Relocation Journey</h3>
+            <span class="progress-percent-badge" id="journey-percent-badge">20%</span>
+          </div>
+          <div class="journey-progress-bar-wrapper">
+            <div class="journey-progress-bar-fill" id="journey-progress-bar" style="width: 20%;"></div>
+          </div>
+          <div class="journey-steps-grid" id="journey-steps-container">
+            <!-- Dynamic steps populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Quick Actions Grid -->
+        <div class="quick-actions-section">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions-grid">
+            
+            <!-- Arrival Assistance -->
+            <a href="/arrival-assistance.html" class="action-card">
+              <div class="action-card-icon-wrapper"><i data-lucide="map-pin"></i></div>
+              <div class="action-card-content">
+                <h4>Arrival Assistance</h4>
+                <p>Spend your first day stress-free.</p>
+              </div>
+            </a>
+
+            <!-- Accommodation -->
+            <a href="/accommodation.html" class="action-card">
+              <div class="action-card-icon-wrapper"><i data-lucide="home"></i></div>
+              <div class="action-card-content">
+                <h4>Accommodation</h4>
+                <p>Find trusted rentals.</p>
+              </div>
+            </a>
+
+            <!-- Settling Kit -->
+            <a href="/settling-kits.html" class="action-card">
+              <div class="action-card-icon-wrapper"><i data-lucide="package"></i></div>
+              <div class="action-card-content">
+                <h4>Settling Kit</h4>
+                <p>Everything ready before arrival.</p>
+              </div>
+            </a>
+
+            <!-- Ask a Senior -->
+            <a href="/ask-a-senior.html" class="action-card">
+              <div class="action-card-icon-wrapper"><i data-lucide="message-square"></i></div>
+              <div class="action-card-content">
+                <h4>Ask a Senior</h4>
+                <p>Connect with someone already living there.</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Coming Soon Row -->
+        <div class="coming-soon-section">
+          <div class="coming-soon-header">
+            <h3>More services are coming soon 🚀</h3>
+          </div>
+          <div class="coming-soon-tags">
+            <div class="coming-soon-tag"><i data-lucide="map"></i> City Guides</div>
+            <div class="coming-soon-tag"><i data-lucide="percent"></i> Student Discounts</div>
+            <div class="coming-soon-tag"><i data-lucide="users"></i> Community</div>
+            <div class="coming-soon-tag"><i data-lucide="calendar"></i> Events</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right / Sidebar Column -->
+      <aside class="dashboard-sidebar-col">
+        <!-- Support Card -->
+        <div class="dashboard-card support-widget">
+          <div class="support-icon-circle"><i data-lucide="headphones"></i></div>
+          <h3>Need help?</h3>
+          <p class="support-subtext">"Talk to the Citadyo Team"</p>
+          <button class="btn-primary support-contact-btn" id="contact-support-btn">
+            Contact Support
+          </button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+
+  <script type="module" src="/src/dashboard.js"></script>
+</body>
+</html>

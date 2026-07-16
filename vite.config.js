@@ -6,6 +6,7 @@ export default defineConfig({
             input: {
                 main: 'index.html',
                 about: 'about.html',
+                accommodation: 'accommodation.html',
                 arrival: 'arrival-assistance.html',
                 ask: 'ask-a-senior.html',
                 associate: 'associate.html',
@@ -14,7 +15,9 @@ export default defineConfig({
                 investors: 'investors.html',
                 rental: 'rental.html',
                 settling: 'settling-kits.html',
-                work: 'work-with-us.html'
+                work: 'work-with-us.html',
+                dashboard: 'dashboard.html',
+                account: 'account.html'
             }
         }
     }

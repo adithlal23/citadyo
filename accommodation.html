@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accommodation | Citadyo</title>
+  <meta name="description"
+    content="Find verified rentals and student-friendly accommodation. Citadyo is building a trusted, safe rental matching platform with zero brokerage confusion." />
+  <link rel="canonical" href="https://citadyo.com/accommodation.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://citadyo.com/accommodation.html" />
+  <meta property="og:title" content="Accommodation | Citadyo" />
+  <meta property="og:description"
+    content="Find verified rentals and student-friendly accommodation. Citadyo is building a trusted, safe rental matching platform with zero brokerage confusion." />
+  <meta property="og:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://citadyo.com/accommodation.html" />
+  <meta property="twitter:title" content="Accommodation | Citadyo" />
+  <meta property="twitter:description"
+    content="Find verified rentals and student-friendly accommodation. Citadyo is building a trusted, safe rental matching platform with zero brokerage confusion." />
+  <meta property="twitter:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#how-it-works">How it Works</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Offerings <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+              stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="dropdown-icon">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></a>
+          <div class="dropdown-content glass">
+            <a href="/arrival-assistance.html">Arrival Assistance</a>
+            <a href="/accommodation.html">Accommodation</a>
+            <a href="/settling-kits.html">Settling Kits</a>
+            <a href="/ask-a-senior.html">Ask a Senior</a>
+          </div>
+        </li>
+        <li><a href="/#guide">Become a Guide</a></li>
+        <li><a href="#" class="btn-primary-sm get-started-btn">Get Started</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. Hero Section -->
+  <section class="hero accommodation-hero">
+    <div class="hero-content fade-in" style="max-width: 850px; text-align: center; margin: 0 auto;">
+      <span class="badge" style="margin-bottom: 1.5rem;">Launching Soon</span>
+      <h1 style="font-size: clamp(2.5rem, 6vw, 4.2rem); line-height: 1.15; margin-bottom: 1.5rem;">Find a place you'll
+        <span class="text-accent">feel at home.</span></h1>
+      <p
+        style="font-size: 1.25rem; line-height: 1.6; max-width: 720px; margin: 0 auto 2.5rem auto; color: var(--text-secondary);">
+        We're building a trusted accommodation platform for students and young professionals moving to a new city. Our
+        goal is to make finding a home simple, safe and stress-free.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#waitlist-section" class="btn-primary">Notify Me</a>
+        <a href="/arrival-assistance.html" class="btn-secondary-link"
+          style="border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 99px; font-weight: 600; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);">Explore
+          Arrival Assistance</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Launching Soon Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="fade-in-up glass-card"
+      style="max-width: 900px; margin: 0 auto; padding: 4rem; text-align: center; border-radius: 32px; background: var(--bg-primary);">
+      <div class="badge badge-outline" style="margin-bottom: 1.5rem;">Onboarding Partners</div>
+      <h2 style="font-size: 2.25rem; margin-bottom: 1rem; letter-spacing: -0.02em;">Building a safe housing network</h2>
+      <p
+        style="font-size: 1.15rem; color: var(--text-secondary); max-width: 650px; margin: 0 auto 2rem auto; line-height: 1.6;">
+        Citadyo is currently onboarding trusted local accommodation partners, PG operators, and verified student rentals
+        to eliminate double deposits, fake listings, and unexpected broker charges before our launch.
+      </p>
+      <span style="font-size: 0.95rem; font-weight: 700; color: var(--accent);">Verified Rentals • Transparent Pricing •
+        Zero Brokerage</span>
+    </div>
+  </section>
+
+  <!-- 3. What to Expect Section -->
+  <section class="services bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>What to expect</h2>
+      <p>How we are rethinking student and professional accommodation from the ground up.</p>
+    </div>
+    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.1s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3>Verified properties</h3>
+        <p>Every home, PG, and room listed is physically inspected and verified by a Citadyo associate before upload.
+        </p>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.2s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Student-friendly rentals</h3>
+        <p>Curated list of spaces that welcome students and young professionals without traditional rental biases.</p>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.3s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+          </svg>
+        </div>
+        <h3>Zero broker confusion</h3>
+        <p>Deal directly with verified properties. Say goodbye to hidden commissions, brokerage, or agent fees.</p>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.4s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <h3>Flexible stay options</h3>
+        <p>Find spaces configured for both short-term college semesters and long-term professional relocations.</p>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.5s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </div>
+        <h3>Local area guidance</h3>
+        <p>Understand the neighborhoods, distances to universities, nearby transit routes, and general area vibes.</p>
+      </div>
+
+      <div class="service-card glass fade-in-up" style="animation-delay: 0.6s">
+        <div class="icon-wrapper" style="margin-bottom: 1.5rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+        </div>
+        <h3>Curated recommendations</h3>
+        <p>Get personalized lists matching your criteria (e.g. food options, roommate compatibility, study-desk
+          facilities).</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. How It Will Work Section -->
+  <section class="bg-full bg-light"
+    style="padding-top: 6rem; padding-bottom: 6rem; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);">
+    <div class="section-header fade-in">
+      <h2>How it will work</h2>
+      <p>A simple, safe path to your new home.</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-track"></div>
+
+      <div class="timeline-step fade-in-up">
+        <div class="timeline-node">1️⃣</div>
+        <div class="timeline-content">
+          <h3>Tell us your destination</h3>
+          <p>Provide your target city, university or office location, and rent budget preferences.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step fade-in-up" style="animation-delay: 0.1s">
+        <div class="timeline-node">2️⃣</div>
+        <div class="timeline-content">
+          <h3>Receive curated accommodation options</h3>
+          <p>Browse checked and inspected spaces matching your criteria without broker listings.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step fade-in-up" style="animation-delay: 0.2s">
+        <div class="timeline-node">3️⃣</div>
+        <div class="timeline-content">
+          <h3>Choose the best fit</h3>
+          <p>Confirm booking securely, with transparent deposit terms and clear tenant guidelines.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step fade-in-up" style="animation-delay: 0.3s">
+        <div class="timeline-node">4️⃣</div>
+        <div class="timeline-content">
+          <h3>Move in with Citadyo support</h3>
+          <p>Get key coordination handoffs, check-in support, and on-ground associate help on move-in day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Notify Me / Waitlist Section -->
+  <section id="waitlist-section" class="bg-full bg-white" style="padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header fade-in">
+      <h2>Be the first to find a home</h2>
+      <p>Join the waitlist to receive priority access to verified listings when we launch.</p>
+    </div>
+
+    <div class="fade-in-up"
+      style="max-width: 600px; margin: 0 auto; background: var(--bg-secondary); padding: 3rem; border-radius: 28px; border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+      <form id="waitlist-form" class="waitlist-form">
+        <div class="form-row">
+          <div class="input-group">
+            <input type="text" id="name" placeholder="Full Name" required />
+            <span class="inline-error" id="name-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email Address" required />
+            <span class="inline-error" id="email-error"></span>
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="text" id="city" placeholder="Destination City" required />
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Join Waitlist</button>
+      </form>
+      <div id="form-message" class="form-message" style="margin-top: 1.5rem; text-align: center; display: none;"></div>
+    </div>
+  </section>
+
+  <!-- 6. Explore Arrival Assistance CTA -->
+  <section class="hero bg-full bg-tinted"
+    style="min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 8rem; padding-bottom: 8rem;">
+    <h2 class="fade-in"
+      style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; max-width: 700px; line-height: 1.3;">
+      Arriving before accommodation is live?<br>
+      <strong style="color: var(--accent);">Explore Arrival Assistance.</strong>
+    </h2>
+    <p class="fade-in" style="max-width: 600px; margin-bottom: 2.5rem; margin-top: 1rem; color: var(--text-secondary);">
+      We'll coordinate pickup, help with check-in, guide your routes, and support you on your first day.
+    </p>
+    <a href="/arrival-assistance.html" class="btn-primary fade-in">Explore Arrival Assistance</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" class="logo"><img src="/logo.png" alt="Citadyo Logo"> <span class="brand-name">Citadyo</span></a>
+        <p>Making relocation simple, stress-free, and welcoming for students and young professionals.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#careers">Careers</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/#privacy">Privacy Policy</a></li>
+          <li><a href="/#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Citadyo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
