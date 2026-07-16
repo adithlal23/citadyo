@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | Citadyo</title>
+  <meta name="description"
+    content="Manage your Citadyo user account details, edit contact information, verify phone number, and configure notification alerts." />
+  <link rel="canonical" href="https://citadyo.com/account.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://citadyo.com/account.html" />
+  <meta property="og:title" content="My Account | Citadyo" />
+  <meta property="og:description"
+    content="Manage your Citadyo user account details, edit contact information, verify phone number, and configure notification alerts." />
+  <meta property="og:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://citadyo.com/account.html" />
+  <meta property="twitter:title" content="My Account | Citadyo" />
+  <meta property="twitter:description"
+    content="Manage your Citadyo user account details, edit contact information, verify phone number, and configure notification alerts." />
+  <meta property="twitter:image" content="https://citadyo.com/logo-new.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="dashboard-body">
+  <!-- Session Loading Overlay -->
+  <div id="account-loader">
+    <div class="loader-spinner"></div>
+    <p>Securing session...</p>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/logo.png" alt="Citadyo Logo">
+        <span class="brand-name">Citadyo</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="nav-desktop-menu">
+        <div class="profile-dropdown-trigger" id="profile-dropdown-btn">
+          <div id="nav-initial-avatar" class="nav-initial-avatar">U</div>
+          <span id="nav-user-name" class="nav-profile-name">User</span>
+          <i data-lucide="chevron-down" class="nav-chevron-icon"></i>
+        </div>
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown glass" id="profile-dropdown-menu">
+          <div class="dropdown-user-info">
+            <strong id="dropdown-name">User Name</strong>
+            <span id="dropdown-email">user@email.com</span>
+          </div>
+          <hr class="dropdown-divider">
+          <a href="/dashboard.html" class="dropdown-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+          <a href="/account.html" class="dropdown-item"><i data-lucide="user"></i> My Account</a>
+          <a href="#" class="dropdown-item disabled"><i data-lucide="help-circle"></i> Support <span
+              class="badge-soon">Soon</span></a>
+          <hr class="dropdown-divider">
+          <a href="#" class="dropdown-item logout-item" id="logout-btn"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="mobile-menu-btn" id="mobile-menu-toggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <div class="mobile-user-profile">
+          <div id="mobile-initial-avatar" class="nav-initial-avatar">U</div>
+          <div>
+            <strong id="mobile-dropdown-name">User Name</strong>
+            <span id="mobile-dropdown-email">user@email.com</span>
+          </div>
+        </div>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+        <li><a href="/account.html" class="active"><i data-lucide="user"></i> My Account</a></li>
+        <li><a href="#" class="disabled"><i data-lucide="help-circle"></i> Support (Coming Soon)</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a href="#" class="logout-item" id="mobile-logout-btn"><i data-lucide="log-out"></i> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Profile Container -->
+  <main class="dashboard-main-container">
+    <div class="account-content-layout">
+      <!-- Profile Header Summary -->
+      <div class="account-header-card glass">
+        <div class="account-avatar-wrapper">
+          <div id="account-large-avatar" class="account-large-avatar">U</div>
+        </div>
+        <div class="account-identity">
+          <h1 id="account-identity-name">User Name</h1>
+          <p id="account-identity-email">user@email.com</p>
+        </div>
+      </div>
+
+      <div class="account-sections-grid">
+        <!-- Left / Form Columns -->
+        <div class="account-form-column">
+          <!-- Card 1: Basic Information -->
+          <div class="dashboard-card form-card">
+            <h3 class="section-title"><i data-lucide="info"></i> Basic Information</h3>
+            <hr class="card-divider">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="google-name-input">Google Name</label>
+                <input type="text" id="google-name-input" class="form-input disabled" readonly>
+                <span class="input-hint">Google account name (read-only)</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="preferred-name-input">Preferred Name </label>
+                <input type="text" id="preferred-name-input" class="form-input" placeholder="e.g. Adi">
+                <span class="input-hint">What should we call you?</span>
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label" for="email-input">Email Address</label>
+                <input type="email" id="email-input" class="form-input disabled" readonly>
+                <span class="input-hint">Google sign-in email (read-only)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Contact & Security -->
+          <div class="dashboard-card form-card">
+            <h3 class="section-title"><i data-lucide="shield-check"></i> Contact & Security</h3>
+            <hr class="card-divider">
+            <div class="security-list">
+              <!-- Email Row -->
+              <div class="security-row">
+                <div class="security-info">
+                  <span class="security-label">Email Verification</span>
+                  <p class="security-desc">Verified through Google Account</p>
+                </div>
+                <span class="badge badge-success"><i data-lucide="check-circle-2"></i> Verified</span>
+              </div>
+              <!-- Phone Row -->
+              <div class="security-row">
+                <div class="security-info">
+                  <span class="security-label">Phone Verification</span>
+                  <p class="security-desc" id="phone-display-text">Not registered</p>
+                </div>
+                <div class="security-actions" id="phone-status-container">
+                  <!-- Badges and Verification button will be rendered here dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right / Side Columns -->
+        <div class="account-side-column">
+          <!-- Card 3: Completion card -->
+          <div class="dashboard-card completion-card">
+            <h3 class="section-title"><i data-lucide="sparkles"></i> Complete Your Account</h3>
+            <hr class="card-divider">
+            <div class="completion-tasks" id="completion-tasks-list">
+              <!-- Checklist tasks rendered dynamically -->
+            </div>
+            <div class="completion-progress-bar-wrapper">
+              <div class="completion-progress-bar-fill" id="completion-bar-fill" style="width: 20%;"></div>
+            </div>
+            <div class="completion-percent-label" id="completion-percent-text">20% Complete</div>
+          </div>
+
+          <!-- Card 4: My Move -->
+          <div class="dashboard-card form-card">
+            <h3 class="section-title"><i data-lucide="map-pin"></i> My Move</h3>
+            <hr class="card-divider">
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label class="form-label" for="destination-city-select">Destination City</label>
+                <select id="destination-city-select" class="form-select">
+                  <option value="">Select City</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label" for="move-status-select">Move Status</label>
+                <select id="move-status-select" class="form-select">
+                  <option value="">Select Status</option>
+                  <option value="Planning to Move">Planning to Move</option>
+                  <option value="Moving Soon">Moving Soon</option>
+                  <option value="Already Moved">Already Moved</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: About Me -->
+          <div class="dashboard-card form-card">
+            <h3 class="section-title"><i data-lucide="user"></i> About Me</h3>
+            <hr class="card-divider">
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label class="form-label" for="user-type-select">User Type</label>
+                <select id="user-type-select" class="form-select">
+                  <option value="">Select Type</option>
+                  <option value="Student">Student</option>
+                  <option value="Working Professional">Working Professional</option>
+                </select>
+              </div>
+              <div class="form-group full-width hidden" id="group-college">
+                <label class="form-label" for="college-input">College Name</label>
+                <input type="text" id="college-input" class="form-input"
+                  placeholder="e.g. Symbiosis International University">
+              </div>
+              <div class="form-group full-width hidden" id="group-company">
+                <label class="form-label" for="company-input">Company Name</label>
+                <input type="text" id="company-input" class="form-input" placeholder="e.g. Google India">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Account Information -->
+          <div class="dashboard-card form-card info-card">
+            <h3 class="section-title"><i data-lucide="calendar"></i> Account Information</h3>
+            <hr class="card-divider">
+            <div class="info-row">
+              <span class="info-label">Member Since</span>
+              <span class="info-val" id="info-member-since">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Last Login</span>
+              <span class="info-val" id="info-last-login">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="account-actions-bar">
+        <button type="button" class="btn-primary" id="save-profile-btn"
+          style="border-radius:10px; height:46px; padding:0 30px;">
+          Save Changes
+        </button>
+        <a href="/dashboard.html" class="btn-cancel" id="cancel-profile-btn">
+          Cancel
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Overlay Modal -->
+  <div class="citadyo-modal-overlay" id="success-save-modal">
+    <div class="citadyo-modal-content glass" style="max-width: 400px; text-align: center; padding: 30px 24px;">
+      <div class="success-icon" style="font-size: 3rem; margin-bottom: 15px;">🎉</div>
+      <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Awesome!</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5;">
+        Your account has been updated successfully.
+      </p>
+      <a href="/dashboard.html" class="btn-primary"
+        style="width: 100%; display: block; text-align: center; border-radius: 10px; line-height: 46px; height: 46px; padding: 0;">
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script type="module" src="/src/account.js"></script>
+</body>
+
+</html>

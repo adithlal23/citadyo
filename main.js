@@ -1,152 +1,325 @@
 import './style.css'
-
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
 import { createClient } from '@supabase/supabase-js';
+import { initCommonUI } from './src/ui/ui.js';
+import { setupWaitlistForm } from './src/forms/forms.js';
+import { listenForAuth, checkUserExists } from './src/auth/auth.js';
+import { initAuthModal, openAuthModal } from './src/ui/loginModal.js';
+import { requirePhoneVerification } from './src/ui/phoneGuard.js';
+import { initSupport } from './src/ui/support.js';
+import { submitForm } from './src/api/api.js';
+import { fileToBase64 } from './src/api/uploader.js';
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Cinematic Brand Intro Animation & FLIP Handoff Controller
+(function() {
+  const init = () => {
+    const isHomepage = !!document.getElementById('intro');
+    
+    if (!isHomepage) {
+      if (document.body) {
+        document.body.classList.remove('loading-active');
+      }
+      const pageWrapper = document.getElementById('page-wrapper');
+      if (pageWrapper) {
+        pageWrapper.classList.add('visible');
+      }
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        navbar.style.opacity = '1';
+        navbar.style.pointerEvents = 'all';
+      }
+      const navLogoLink = document.getElementById('nav-logo-link');
+      if (navLogoLink) {
+        navLogoLink.style.opacity = '1';
+        navLogoLink.style.pointerEvents = 'all';
+      }
+      const intro = document.getElementById('intro');
+      if (intro) intro.remove();
+      return;
+    }
+    
+    // Brand Intro Animation sequence (Homepage only)
+    const intro = document.getElementById('intro');
+    const introBg = document.querySelector('.intro-bg-ambient');
+    const logoContainer = document.getElementById('brand-logo-container');
+    const brandLogoImg = document.getElementById('brand-logo-img');
+    const logoShine = document.getElementById('logo-shine');
+    const wordmark = document.getElementById('brand-wordmark');
+    const navLogoImg = document.getElementById('nav-logo-img');
+    const navLogoLink = document.getElementById('nav-logo-link');
+    const navbar = document.getElementById('navbar');
+    const pageWrapper = document.getElementById('page-wrapper');
+
+    if (!intro || !logoContainer || !brandLogoImg || !logoShine || !wordmark) return;
+
+    // 0.0s - 0.3s: Logo container scales in & ambient glow appears (warm background is immediate)
+    setTimeout(() => {
+      if (introBg) introBg.classList.add('active');
+      if (logoContainer) logoContainer.classList.add('active');
+    }, 50);
+
+    // 0.3s - 0.7s: (Logo holds scale focus)
+    // No timing block needed - logo holds scale naturally
+
+    // 0.7s - 1.0s: Wordmark slides/fades in using solid brand colors
+    setTimeout(() => {
+      if (wordmark) wordmark.classList.add('active');
+    }, 700);
+
+    // 1.0s - 1.3s: Shine sweep reveal on the logo image
+    setTimeout(() => {
+      if (logoShine) logoShine.classList.add('sweep-active');
+    }, 1000);
+
+    // 1.3s - 1.5s: FLIP collapse transition of brand logo image into navbar logo position
+    setTimeout(() => {
+      // Fade out wordmark naturally
+      if (wordmark) {
+        wordmark.classList.remove('active');
+        wordmark.classList.add('fade-out');
+      }
+
+      if (navLogoImg && navbar && brandLogoImg) {
+        const targetRect = navLogoImg.getBoundingClientRect();
+        const sourceRect = brandLogoImg.getBoundingClientRect();
+
+        const dx = (targetRect.left + targetRect.width / 2) - (sourceRect.left + sourceRect.width / 2);
+        const dy = (targetRect.top + targetRect.height / 2) - (sourceRect.top + sourceRect.height / 2);
+        const scale = targetRect.width / sourceRect.width;
+
+        // Animate image collapse into navbar brand logo
+        brandLogoImg.style.transition = 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        brandLogoImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+        brandLogoImg.style.opacity = '0';
+      }
+    }, 1300);
+
+    // 1.5s: Reached end of logo collapse. Fade out overlay, reveal page, and start homepage paper plane flight.
+    setTimeout(() => {
+      if (intro) intro.classList.add('fade-out');
+      
+      // Reveal the homepage content wrapper
+      if (pageWrapper) {
+        pageWrapper.classList.add('visible');
+      }
+      
+      if (document.body) {
+        document.body.classList.remove('loading-active');
+      }
+
+      if (navLogoLink) {
+        navLogoLink.style.opacity = '1';
+        navLogoLink.style.pointerEvents = 'all';
+      }
+
+      // Start the S-curve timeline flight after intro ends
+      if (window.startHomepageJourney) {
+        window.startHomepageJourney();
+      }
+
+      // Cleanup overlay after fade transition completes
+      setTimeout(() => {
+        if (intro) intro.remove();
+      }, 400);
+    }, 1500);
+  };
+
+  init();
+})();
+
+// Signature Homepage Journey Loop Controller
+(function() {
+  window.startHomepageJourney = function() {
+    const wrapper = document.querySelector('.hero-journey-animation-wrapper');
+    if (!wrapper) return;
+
+    const path = document.getElementById('journey-path');
+    const progressPath = document.getElementById('journey-path-progress');
+    const plane = document.getElementById('journey-plane');
+    const milestones = document.querySelectorAll('.milestone');
+    const overlay = document.getElementById('welcome-home-overlay');
+    if (!path || !plane) return;
+
+    const pathLength = path.getTotalLength();
+    if (progressPath) {
+      progressPath.style.strokeDasharray = pathLength;
+      progressPath.style.strokeDashoffset = pathLength;
+    }
+
+    // Mathematical stops mapped along the Bezier curve parametric coordinates
+    const stops = [
+      { index: 0, percent: 0.00, duration: 1000 },  // Home
+      { index: 1, percent: 0.125, duration: 1000 }, // Packing
+      { index: 2, percent: 0.25, duration: 1000 },  // Journey
+      { index: 3, percent: 0.375, duration: 1000 }, // Arrival
+      { index: 4, percent: 0.50, duration: 1000 },  // Associate
+      { index: 5, percent: 0.625, duration: 1000 }, // Accommodation
+      { index: 6, percent: 0.75, duration: 1000 },  // Kit
+      { index: 7, percent: 0.875, duration: 1000 }, // City
+      { index: 8, percent: 1.00, duration: 2500 }   // Welcome Home Final Overlay
+    ];
+
+    let currentStopIndex = 0;
+    let currentPercent = 0;
+    let isPausing = false;
+    let isOverlayActive = false;
+    let animationFrameId = null;
+
+    function updatePlanePosition(percent) {
+      const distance = percent * pathLength;
+      const pt = path.getPointAtLength(distance);
+      
+      const ptAhead = path.getPointAtLength(Math.min(distance + 2, pathLength));
+      const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * 180 / Math.PI;
+
+      const xPct = (pt.x / 500) * 100;
+      const yPct = (pt.y / 400) * 100;
+
+      plane.style.left = `${xPct}%`;
+      plane.style.top = `${yPct}%`;
+      plane.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+
+      if (progressPath) {
+        progressPath.style.strokeDashoffset = pathLength - distance;
+      }
+    }
+
+    function activateMilestone(index) {
+      milestones.forEach((m, idx) => {
+        if (idx === index) {
+          m.classList.add('active');
+        } else {
+          m.classList.remove('active');
+        }
+      });
+    }
+
+    function deactivateAllMilestones() {
+      milestones.forEach(m => m.classList.remove('active'));
+    }
+
+    function step() {
+      if (isPausing || isOverlayActive) return;
+
+      const targetStop = stops[currentStopIndex];
+      const targetPercent = targetStop.percent;
+
+      const delta = 0.0035; // Fine-tuned flight speed
+      if (currentPercent < targetPercent) {
+        currentPercent = Math.min(currentPercent + delta, targetPercent);
+      }
+
+      updatePlanePosition(currentPercent);
+
+      // Check if plane arrived at milestone stop
+      if (Math.abs(currentPercent - targetPercent) < 0.001) {
+        isPausing = true;
+        activateMilestone(currentStopIndex);
+
+        // Welcome Home overlay trigger at last milestone
+        if (currentStopIndex === 8) {
+          isOverlayActive = true;
+          if (overlay) overlay.classList.add('active');
+          
+          setTimeout(() => {
+            if (overlay) overlay.classList.remove('active');
+            isOverlayActive = false;
+            isPausing = false;
+            
+            // Loop restart
+            currentStopIndex = 0;
+            currentPercent = 0;
+            deactivateAllMilestones();
+            updatePlanePosition(0);
+            animationFrameId = requestAnimationFrame(step);
+          }, targetStop.duration);
+          return;
+        }
+
+        setTimeout(() => {
+          isPausing = false;
+          currentStopIndex = (currentStopIndex + 1) % stops.length;
+          animationFrameId = requestAnimationFrame(step);
+        }, targetStop.duration);
+        
+        return;
+      }
+
+      animationFrameId = requestAnimationFrame(step);
+    }
+
+    // Start Timeline loop
+    updatePlanePosition(0);
+    animationFrameId = requestAnimationFrame(step);
+  };
+})();
+
+// ✅ SUPABASE CONFIG (RETAINED FOR NON-MIGRATED FORMS)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+let supabase = null;
+
+if (supabaseUrl && supabaseKey) {
+  try {
+    supabase = createClient(supabaseUrl, supabaseKey);
+  } catch (err) {
+    console.warn("Supabase client failed to initialize:", err);
+  }
+} else {
+  console.log("Supabase environment variables not detected in frontend. Non-migrated forms will be unavailable.");
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Sticky Navbar Logic
-  const navbar = document.getElementById('navbar');
+  // Initialize modular UI and Waitlist form (Phase 1)
+  initCommonUI();
+  setupWaitlistForm();
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+  // Initialize Support System
+  initSupport();
+
+  // Initialize Citadyo Authentication Modal
+  initAuthModal();
+
+  // Track active firebase user state to handle redirect / modal flow on Get Started clicks
+  let activeUser = null;
+  listenForAuth((user) => {
+    activeUser = user;
   });
 
-  // Mobile Menu Logic
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.getElementById('nav-links');
-
-  if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
-
-  // Mobile Dropdown Toggle
-  const dropdown = document.querySelector('.dropdown');
-  const dropbtn = document.querySelector('.dropbtn');
-
-  if (dropbtn) {
-    dropbtn.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
-      }
-    });
-  }
-  // View Relocation Plan → Scroll to Services
-  const btn = document.getElementById("view-plan-btn");
-
-  if (btn) {
-    btn.onclick = function () {
-      const section = document.getElementById("services");
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth"
-        });
-      }
-    };
-  }
-  // Waitlist Form Logic
-  const form = document.getElementById('waitlist-form');
-  const messageEl = document.getElementById('form-message');
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
+  const getStartedButtons = document.querySelectorAll('.get-started-btn');
+  getStartedButtons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
-
-      const nameInput = form.querySelector('#name');
-      const emailInput = form.querySelector('#email');
-      const cityInput = form.querySelector('#city');
-
-      const name = nameInput?.value.trim();
-      const email = emailInput?.value.trim();
-      const city = cityInput?.value.trim() || null;
-
-      // Validation Logic
-      let isValid = true;
-      const nameError = form.querySelector('#name-error');
-      const emailError = form.querySelector('#email-error');
-
-      // Reset errors
-      nameInput.classList.remove('invalid');
-      emailInput.classList.remove('invalid');
-      if (nameError) {
-        nameError.textContent = '';
-        nameError.classList.remove('visible');
-      }
-      if (emailError) {
-        emailError.textContent = '';
-        emailError.classList.remove('visible');
-      }
-
-      if (!name) {
-        nameInput.classList.add('invalid');
-        if (nameError) {
-          nameError.textContent = 'Name is required';
-          nameError.classList.add('visible');
-        }
-        isValid = false;
-      }
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailInput.classList.add('invalid');
-        if (emailError) {
-          emailError.textContent = 'Please enter a valid email';
-          emailError.classList.add('visible');
-        }
-        isValid = false;
-      }
-
-      if (!isValid) return;
-
-      const btn = form.querySelector('button');
-      const originalText = btn.textContent;
-      btn.textContent = 'Joining...';
-      btn.disabled = true;
-
-      try {
-        const { error } = await supabase
-          .from('waitlist_users')
-          .insert([
-            { name, email, destination_city: city }
-          ]);
-
-        if (error) throw error;
-
-        // Trigger welcome email via local API
+      
+      if (activeUser) {
+        // User already logged in, check if they completed onboarding
+        btn.disabled = true;
+        const originalText = btn.textContent;
+        btn.textContent = 'Checking session...';
+        
         try {
-          emailjs.init("2eQPcf78ba9teOHLW");
-
-          await emailjs.send("service_l0sibnb", "template_goz8c2o", {
-            email: email
-          });
-
-          console.log("Email sent successfully");
-
-        } catch (emailErr) {
-          console.error("EmailJS error:", emailErr);
+          const exists = await checkUserExists(activeUser.uid);
+          if (exists) {
+            window.location.href = '/dashboard.html';
+            return;
+          }
+        } catch (err) {
+          console.error("Error checking user existence on CTA click:", err);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = originalText;
         }
-
-        showMessage('You\'re on the waitlist 🎉', 'success');
-        form.reset();
-      } catch (err) {
-        console.error('Supabase error:', err);
-        showMessage('Something went wrong. Please try again.', 'error');
-      } finally {
-        btn.textContent = originalText;
-        btn.disabled = false;
       }
+      
+      // If not logged in, or onboarding not complete, open auth modal
+      openAuthModal();
     });
-  }
+  });
+
+
+
+  /* ====================================================
+     EXISTING FORMS (RETAINED DURING MIGRATION PHASES)
+     ==================================================== */
 
   // Investor Form Logic
   const investorForm = document.getElementById('investor-form');
@@ -155,6 +328,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (investorForm) {
     investorForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (!supabase) {
+        showMessage('Database configuration is missing.', 'error', investorMessageEl);
+        return;
+      }
 
       const nameInput = investorForm.querySelector('#inv-name');
       const emailInput = investorForm.querySelector('#inv-email');
@@ -326,74 +504,47 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = 'Submitting...';
       btn.disabled = true;
 
-      // ✅ IMPORTANT FIX
-      let college_id_url = null;
-
       try {
+        let collegeIdFileData = null;
         if (profile_type === 'student' && collegeIdFile) {
-
-          const fileExt = collegeIdFile.name.split('.').pop();
-          const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-          const filePath = `associates/${fileName}`;
-
-          const { error: uploadError } = await supabase.storage
-            .from('associate-docs')
-            .upload(filePath, collegeIdFile);
-
-          if (uploadError) {
-            console.error('Upload error:', uploadError);
-            throw new Error('Failed to upload College ID. Please try again.');
+          try {
+            collegeIdFileData = await fileToBase64(collegeIdFile);
+          } catch (fileErr) {
+            console.error("Failed to parse file to Base64:", fileErr);
+            throw new Error('Failed to process College ID file. Please try again.');
           }
-
-          const { data: publicUrlData } = supabase.storage
-            .from('associate-docs')
-            .getPublicUrl(filePath);
-
-          college_id_url = publicUrlData?.publicUrl || null;
-
-          // ✅ DEBUG (VERY IMPORTANT)
-          console.log("FILE URL:", college_id_url);
         }
 
-        const { error } = await supabase
-          .from('associates')
-          .insert([
-            {
-              name,
-              phone,
-              email,
-              city_area,
-              native_place,
-              gender,
-              profile_type,
-              college,
-              company,
-              role,
-              experience_years,
-              primary_language,
-              secondary_language,
-              other_languages,
-              driving,
-              vehicle,
-              motivation,
-              declaration,
-              college_id_url // ✅ FIXED
-            }
-          ]);
+        const payload = {
+          name,
+          phone,
+          email,
+          city_area,
+          native_place,
+          gender,
+          profile_type,
+          college,
+          company,
+          role,
+          experience_years,
+          primary_language,
+          secondary_language,
+          other_languages,
+          driving,
+          vehicle,
+          motivation,
+          declaration,
+          collegeIdFile: collegeIdFileData
+        };
 
-        if (error) {
-          console.error("Insert error FULL:", JSON.stringify(error, null, 2));
-          throw new Error('Failed to submit application. Please try again.');
-        }
+        await submitForm('associate', payload);
 
-        // Email trigger (unchanged)
-        // ✅ EMAILJS
+        // Email trigger (Fallback / Notification)
         try {
           await emailjs.send("service_l0sibnb", "template_g1ov2bk", {
             name: name,
             email: email
           });
-
           console.log("Email sent via EmailJS");
         } catch (emailErr) {
           console.error("EmailJS error:", emailErr);
@@ -411,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
 
   // Driver Form Logic
   const driverForm = document.getElementById('driver-form');
@@ -434,11 +586,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const vehicle_number = driverForm.querySelector('#driver-vehicle-number')?.value.trim();
       const car_model = driverForm.querySelector('#driver-car-model')?.value.trim();
       const vehicle_type = driverForm.querySelector('#driver-vehicle-type')?.value;
+      const fuel_type = driverForm.querySelector('#driver-fuel-type')?.value;
       const ac_type = driverForm.querySelector('#driver-ac-type')?.value;
 
       const experience_years = driverForm.querySelector('#driver-exp-years')?.value;
       const airport_exp_str = driverForm.querySelector('#driver-airport-exp')?.value;
-      const airport_experience = airport_exp_str === 'Yes';
 
       const work_preference = driverForm.querySelector('#driver-work-pref')?.value;
 
@@ -497,52 +649,48 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
 
       try {
-        let license_url = null;
-
+        let licenseFileData = null;
         if (licenseFile) {
-          const fileExt = licenseFile.name.split('.').pop();
-          const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-          const filePath = `drivers/${fileName}`;
-
-          const { error: uploadError } = await supabase.storage
-            .from('driver-docs')
-            .upload(filePath, licenseFile);
-
-          if (uploadError) {
-            console.error('Upload error:', uploadError);
-            throw new Error('Failed to upload driving license. Please try again.');
+          try {
+            licenseFileData = await fileToBase64(licenseFile);
+          } catch (fileErr) {
+            console.error("Failed to parse license file to Base64:", fileErr);
+            throw new Error('Failed to process Driving License file. Please try again.');
           }
-
-          const { data: publicUrlData } = supabase.storage
-            .from('driver-docs')
-            .getPublicUrl(filePath);
-
-          license_url = publicUrlData?.publicUrl || null;
         }
 
-        const { error } = await supabase
-          .from('cab_drivers')
-          .insert([
-            {
-              name, phone, email, city_area, native_place, gender,
-              vehicle_number, car_model, vehicle_type, ac_type,
-              experience_years, airport_experience, work_preference,
-              primary_language, secondary_language, other_languages,
-              license_url, declaration
-            }
-          ]);
+        const payload = {
+          name,
+          phone,
+          email,
+          gender,
+          city_area,
+          native_place,
+          vehicle_number,
+          car_model,
+          vehicle_type,
+          fuel_type,
+          ac_type,
+          experience_years,
+          airport_experience: airport_exp_str === 'Yes',
+          work_preference,
+          primary_language,
+          secondary_language,
+          other_languages,
+          licenseFile: licenseFileData,
+          declaration
+        };
 
-        if (error) throw new Error('Failed to submit application. Please try again.');
+        // Submit directly to Google Apps Script API endpoint
+        await submitForm('driver', payload);
 
         // Trigger driver email via local API
-        // ✅ EMAILJS
         if (email) {
           try {
             await emailjs.send("service_l0sibnb", "template_g1ov2bk", {
               name: name,
               email: email
             });
-
             console.log("Driver email sent");
           } catch (emailErr) {
             console.error("EmailJS error:", emailErr);
@@ -562,12 +710,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function showMessage(msg, type, targetEl = messageEl) {
+  // Helper function for local forms messaging
+  function showMessage(msg, type, targetEl) {
     if (!targetEl) return;
     targetEl.textContent = msg;
     targetEl.className = `form-message ${type}`;
 
-    // Clear message after 5 seconds
     if (type === 'success') {
       setTimeout(() => {
         targetEl.textContent = '';
@@ -576,198 +724,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  // Rental Form Logic (retained from existing main.js)
+  const rentalForm = document.getElementById("rentalForm");
+  if (rentalForm) {
+    rentalForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
 
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        // Account for sticky header
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      if (!supabaseUrl || !supabaseKey) {
+        const msg = document.getElementById("form-message");
+        if (msg) msg.innerText = "Database configuration is missing.";
+        return;
+      }
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+      const useCases = [...document.querySelectorAll(".use_cases:checked")]
+        .map(el => el.value)
+        .join(",");
+
+      const vehicleTypes = [...document.querySelectorAll(".vehicle_types:checked")]
+        .map(el => el.value)
+        .join(",");
+
+      const data = {
+        company_name: document.getElementById("company_name").value,
+        owner_name: document.getElementById("owner_name").value,
+        city_area: document.getElementById("city_area").value,
+        business_address: document.getElementById("business_address").value,
+        contact_number: document.getElementById("contact_number").value,
+        website: document.getElementById("website").value,
+        service_type: document.getElementById("service_type").value,
+        use_cases: useCases,
+        vehicle_count: document.getElementById("vehicle_count").value,
+        vehicle_types: vehicleTypes,
+        pilot_ready: document.getElementById("pilot_ready").value === "true",
+        on_demand_ready: document.getElementById("on_demand_ready").value === "true",
+        platform_experience: document.getElementById("platform_experience").value,
+        motivation: document.getElementById("motivation").value,
+        declaration: document.getElementById("declaration").checked
+      };
+
+      try {
+        const res = await fetch(`${supabaseUrl}/rest/v1/rental_partners`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": supabaseKey,
+            "Authorization": `Bearer ${supabaseKey}`
+          },
+          body: JSON.stringify(data)
         });
-      }
-    });
-  });
-  // View Relocation Plan button scroll (FIXED)
-  const viewPlanBtn = document.getElementById("view-plan-btn");
 
-  if (viewPlanBtn) {
-    viewPlanBtn.addEventListener("click", () => {
-      const targetElement = document.getElementById("services");
+        const msg = document.getElementById("form-message");
 
-      if (targetElement) {
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
-    });
-  }
-
-  // Intersection Observer for Animations
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.fade-in, .fade-in-up').forEach((el) => {
-    observer.observe(el);
-  });
-
-  // Modal Logic
-  const modalOverlay = document.getElementById('kitModal');
-  const openModalBtns = document.querySelectorAll('.open-modal');
-  const closeModalBtn = document.getElementById('closeModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalTagline = document.getElementById('modalTagline');
-  const modalCategories = document.getElementById('modalCategories');
-
-  if (modalOverlay) {
-    openModalBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const title = btn.getAttribute('data-title');
-        const tagline = btn.getAttribute('data-tagline');
-        const categoriesStr = btn.getAttribute('data-categories');
-
-        let categories = [];
-        try {
-          categories = JSON.parse(categoriesStr || '[]');
-        } catch (e) {
-          console.error('Failed to parse categories:', e);
-        }
-
-        if (modalTitle) modalTitle.textContent = title;
-        if (modalTagline) modalTagline.textContent = tagline;
-
-        if (modalCategories) {
-          modalCategories.innerHTML = '';
-          categories.forEach(cat => {
-            const span = document.createElement('span');
-            span.className = 'modal-category';
-            span.innerHTML = cat;
-            modalCategories.appendChild(span);
-            // =========================
-            // View Relocation Plan → Open Offerings
-            // =========================
-
-
+        if (res.ok) {
+          // Send email
+          await fetch("http://localhost:3001/rental-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: document.getElementById("email")?.value || "",
+              company_name: document.getElementById("company_name").value
+            })
           });
 
+          msg.innerText = "Application submitted successfully!";
+          rentalForm.reset();
+        } else {
+          msg.innerText = "Something went wrong. Try again.";
         }
-
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-      });
-    });
-
-    if (closeModalBtn) {
-      closeModalBtn.addEventListener('click', () => {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    }
-
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+      } catch (err) {
+        console.error(err);
       }
     });
   }
 });
-const rentalForm = document.getElementById("rentalForm");
-
-if (rentalForm) {
-  rentalForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const useCases = [...document.querySelectorAll(".use_cases:checked")]
-      .map(el => el.value)
-      .join(",");
-
-    const vehicleTypes = [...document.querySelectorAll(".vehicle_types:checked")]
-      .map(el => el.value)
-      .join(",");
-
-    const data = {
-      company_name: document.getElementById("company_name").value,
-      owner_name: document.getElementById("owner_name").value,
-      city_area: document.getElementById("city_area").value,
-      business_address: document.getElementById("business_address").value,
-      contact_number: document.getElementById("contact_number").value,
-      website: document.getElementById("website").value,
-      service_type: document.getElementById("service_type").value,
-      use_cases: useCases,
-      vehicle_count: document.getElementById("vehicle_count").value,
-      vehicle_types: vehicleTypes,
-      pilot_ready: document.getElementById("pilot_ready").value === "true",
-      on_demand_ready: document.getElementById("on_demand_ready").value === "true",
-      platform_experience: document.getElementById("platform_experience").value,
-      motivation: document.getElementById("motivation").value,
-      declaration: document.getElementById("declaration").checked
-    };
-
-    try {
-      const res = await fetch(`${supabaseUrl}/rest/v1/rental_partners`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": supabaseKey,
-          "Authorization": `Bearer ${supabaseKey}`
-        },
-        body: JSON.stringify(data)
-      });
-
-      const msg = document.getElementById("form-message");
-
-      if (res.ok) {
-
-        // 🔥 SEND EMAIL (BACKEND CALL)
-        await fetch("http://localhost:3001/rental-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: document.getElementById("email")?.value || "",
-            company_name: document.getElementById("company_name").value
-          })
-        });
-
-        // ✅ SUCCESS UI
-        msg.innerText = "Application submitted successfully!";
-        rentalForm.reset();
-
-      } else {
-        msg.innerText = "Something went wrong. Try again.";
-      }
-
-    } catch (err) {
-      console.error(err);
-    }
-  });
-}
