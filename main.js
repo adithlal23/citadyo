@@ -11,15 +11,69 @@ import { fileToBase64 } from './src/api/uploader.js';
 
 // Cinematic Brand Intro Animation & FLIP Handoff Controller
 (function() {
+  // 1. Wrap page content dynamically (excluding navbar, scripts, modals, etc.)
+  let pageWrapper = document.getElementById('page-wrapper');
+  if (!pageWrapper && document.body) {
+    pageWrapper = document.createElement('div');
+    pageWrapper.id = 'page-wrapper';
+    pageWrapper.className = 'hidden-initially';
+    
+    const nodesToMove = [];
+    const children = Array.from(document.body.childNodes);
+    for (const child of children) {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        const id = child.id || '';
+        const tagName = child.tagName.toUpperCase();
+        const className = child.className || '';
+        const classStr = typeof className === 'string' ? className : '';
+        
+        if (id === 'navbar' || 
+            tagName === 'SCRIPT' || 
+            id === 'intro' || 
+            classStr.includes('brand-intro') || 
+            id.includes('modal') || 
+            classStr.includes('modal') || 
+            id.includes('support') || 
+            classStr.includes('support')) {
+          continue;
+        }
+      }
+      nodesToMove.push(child);
+    }
+    
+    const navbar = document.getElementById('navbar');
+    if (navbar && navbar.nextSibling) {
+      document.body.insertBefore(pageWrapper, navbar.nextSibling);
+    } else {
+      document.body.appendChild(pageWrapper);
+    }
+    
+    nodesToMove.forEach(node => pageWrapper.appendChild(node));
+  }
+
   const init = () => {
     const isHomepage = !!document.getElementById('intro');
     
-    if (!isHomepage) {
+    // Clear introPlayed on reload
+    const isReload = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]?.type === 'reload') || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+    if (isReload) {
+      sessionStorage.removeItem('introPlayed');
+    }
+    
+    const introPlayed = sessionStorage.getItem('introPlayed') === 'true';
+    
+    if (!isHomepage || introPlayed) {
+      // Mark as played to prevent intro if navigating to home later
+      if (!isHomepage) {
+        sessionStorage.setItem('introPlayed', 'true');
+      }
+
       if (document.body) {
         document.body.classList.remove('loading-active');
       }
       const pageWrapper = document.getElementById('page-wrapper');
       if (pageWrapper) {
+        pageWrapper.classList.add('page-transition-fast');
         pageWrapper.classList.add('visible');
       }
       const navbar = document.getElementById('navbar');
@@ -34,6 +88,19 @@ import { fileToBase64 } from './src/api/uploader.js';
       }
       const intro = document.getElementById('intro');
       if (intro) intro.remove();
+
+      // Start the journey animation immediately on homepage if intro was skipped
+      if (isHomepage) {
+        if (window.innerWidth > 768) {
+          if (window.startHomepageJourney) {
+            window.startHomepageJourney();
+          }
+        } else {
+          if (window.startMobileHomepageJourney) {
+            window.startMobileHomepageJourney();
+          }
+        }
+      }
       return;
     }
     
@@ -112,18 +179,76 @@ import { fileToBase64 } from './src/api/uploader.js';
       }
 
       // Start the S-curve timeline flight after intro ends
-      if (window.startHomepageJourney) {
-        window.startHomepageJourney();
+      if (window.innerWidth > 768) {
+        if (window.startHomepageJourney) {
+          window.startHomepageJourney();
+        }
+      } else {
+        if (window.startMobileHomepageJourney) {
+          window.startMobileHomepageJourney();
+        }
       }
 
       // Cleanup overlay after fade transition completes
       setTimeout(() => {
         if (intro) intro.remove();
       }, 400);
+
+      // Save intro state to sessionStorage
+      sessionStorage.setItem('introPlayed', 'true');
     }, 1500);
   };
 
   init();
+
+  // Page Transition Link Click Interceptor
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // Skip hashes, javascript, target="_blank", external links
+    if (href.startsWith('#') || href.startsWith('javascript:') || link.getAttribute('target') === '_blank') {
+      return;
+    }
+
+    // Check if external or same page
+    let url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (_) {
+      return; // invalid URL
+    }
+
+    if (url.origin !== window.location.origin) return;
+    if (url.pathname === window.location.pathname && url.search === window.location.search) {
+      if (url.hash) return; // scroll internal
+    }
+
+    // Intercept click and perform page fade-out
+    e.preventDefault();
+    const pageWrapper = document.getElementById('page-wrapper');
+    if (pageWrapper) {
+      pageWrapper.classList.add('page-transition-fast');
+      pageWrapper.classList.remove('visible');
+    }
+    setTimeout(() => {
+      window.location.href = href;
+    }, 250); // 250ms matches transition duration
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    // If navigated via back/forward history cache, ensure content is visible
+    if (event.persisted) {
+      const pageWrapper = document.getElementById('page-wrapper');
+      if (pageWrapper) {
+        pageWrapper.classList.add('page-transition-fast');
+        pageWrapper.classList.add('visible');
+      }
+    }
+  });
 })();
 
 // Signature Homepage Journey Loop Controller
@@ -250,6 +375,95 @@ import { fileToBase64 } from './src/api/uploader.js';
     // Start Timeline loop
     updatePlanePosition(0);
     animationFrameId = requestAnimationFrame(step);
+  };
+})();
+
+// Mobile Responsive Homepage Journey Loop Controller
+(function() {
+  const mobileMilestones = [
+    { emoji: "🏠", title: "🏠 Leaving Home", desc: "Your relocation journey begins." },
+    { emoji: "📦", title: "📦 Curating Essentials", desc: "Packing only what matters most." },
+    { emoji: "✈️", title: "✈️ Relocation Journey", desc: "Crossing distance, building excitement." },
+    { emoji: "🛬", title: "🛬 Arrival Day", desc: "Welcome! Transit and safe check-in." },
+    { emoji: "🤝", title: "🤝 Meet Your Associate", desc: "A local guide is ready to welcome you." },
+    { emoji: "🏡", title: "🏡 Accommodation", desc: "Move into a trusted, safe home." },
+    { emoji: "📦", title: "📦 Settling Kit", desc: "Everything ready inside your room on Day 1." },
+    { emoji: "🌆", title: "🌆 Explore the City", desc: "Start your new chapter with confidence." },
+    { emoji: "💙", title: "💙 Welcome Home", desc: "You're settled with Citadyo." }
+  ];
+
+  window.startMobileHomepageJourney = function() {
+    const wrapper = document.getElementById('mobile-journey-wrapper');
+    if (!wrapper) return;
+
+    const progressLine = document.getElementById('mobile-journey-dot-progress');
+    const plane = document.getElementById('mobile-journey-plane-indicator');
+    const dots = wrapper.querySelectorAll('.mobile-journey-dot');
+    const activeCircle = document.getElementById('mobile-journey-active-circle');
+    const emojiEl = document.getElementById('mobile-journey-active-emoji');
+    const cardEl = document.getElementById('mobile-journey-active-card');
+    const titleEl = document.getElementById('mobile-journey-active-title');
+    const descEl = document.getElementById('mobile-journey-active-desc');
+
+    let currentStep = 0;
+    let timerId = null;
+
+    function goToStep(step) {
+      currentStep = step;
+      const percent = step * 12.5;
+
+      // Update plane and progress line
+      if (progressLine) progressLine.style.width = `${percent}%`;
+      if (plane) plane.style.left = `${percent}%`;
+
+      // Update active dot classes
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === step);
+      });
+
+      // Animate active circle pulse
+      if (activeCircle) {
+        activeCircle.classList.add('pulse');
+        setTimeout(() => activeCircle.classList.remove('pulse'), 400);
+      }
+
+      // Fade transition for card content
+      if (cardEl) {
+        cardEl.classList.add('fade-transition');
+        setTimeout(() => {
+          const data = mobileMilestones[step];
+          if (emojiEl) emojiEl.textContent = data.emoji;
+          if (titleEl) titleEl.textContent = data.title;
+          if (descEl) descEl.textContent = data.desc;
+          cardEl.classList.remove('fade-transition');
+        }, 300);
+      }
+    }
+
+    function startLoop() {
+      if (timerId) clearInterval(timerId);
+      timerId = setInterval(() => {
+        const nextStep = (currentStep + 1) % mobileMilestones.length;
+        goToStep(nextStep);
+      }, 2000); // 2 seconds per stop
+    }
+
+    // Intersection Observer to start when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startLoop();
+        } else {
+          if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(wrapper);
+    goToStep(0);
   };
 })();
 

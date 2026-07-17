@@ -26,8 +26,47 @@ export function initCommonUI() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
   if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    const closeMenu = () => {
+      navLinks.classList.remove('active');
+      mobileMenuBtn.classList.remove('active');
+      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
+    };
+
+    const toggleMenu = () => {
+      const isActive = navLinks.classList.toggle('active');
+      mobileMenuBtn.classList.toggle('active', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : '';
+      document.body.classList.toggle('no-scroll', isActive);
+    };
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when a link inside is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.classList.contains('dropbtn') && window.innerWidth <= 768) {
+          return;
+        }
+        closeMenu();
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Close menu on resize to larger window
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+        closeMenu();
+      }
     });
   }
 
