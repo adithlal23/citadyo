@@ -130,7 +130,6 @@
       <div class="brand-wordmark" id="brand-wordmark">Citadyo</div>
     </div>
   </div>
-  <div id="page-wrapper" class="hidden-initially">
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -159,6 +158,7 @@
     </div>
   </nav>
 
+  <div id="page-wrapper" class="hidden-initially">
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content fade-in">
@@ -166,6 +166,41 @@
       <h1>Move in without the <span class="text-accent">stress.</span></h1>
       <p>The ultimate relocation co-pilot for students and young professionals. From essential settling kits to senior
         Associates, we make sure you arrive feeling at home.</p>
+
+      <!-- Mobile-Only Journey Animation (320px-768px) -->
+      <div class="mobile-journey-wrapper" id="mobile-journey-wrapper">
+        <!-- Horizontal progress dot track -->
+        <div class="mobile-journey-dot-track">
+          <div class="mobile-journey-dot-line"></div>
+          <div class="mobile-journey-dot-progress" id="mobile-journey-dot-progress"></div>
+          <div class="mobile-journey-plane-indicator" id="mobile-journey-plane-indicator">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2 21L23 12 2 3v7l15 2-15 2v7z"/>
+            </svg>
+          </div>
+          <!-- 9 dots -->
+          <div class="mobile-journey-dot active" style="left: 0%;" data-index="0"></div>
+          <div class="mobile-journey-dot" style="left: 12.5%;" data-index="1"></div>
+          <div class="mobile-journey-dot" style="left: 25%;" data-index="2"></div>
+          <div class="mobile-journey-dot" style="left: 37.5%;" data-index="3"></div>
+          <div class="mobile-journey-dot" style="left: 50%;" data-index="4"></div>
+          <div class="mobile-journey-dot" style="left: 62.5%;" data-index="5"></div>
+          <div class="mobile-journey-dot" style="left: 75%;" data-index="6"></div>
+          <div class="mobile-journey-dot" style="left: 87.5%;" data-index="7"></div>
+          <div class="mobile-journey-dot" style="left: 100%;" data-index="8"></div>
+        </div>
+
+        <!-- Active display area -->
+        <div class="mobile-journey-active-display">
+          <div class="mobile-journey-active-circle" id="mobile-journey-active-circle">
+            <span class="active-emoji" id="mobile-journey-active-emoji">🏠</span>
+          </div>
+          <div class="mobile-journey-active-card glass" id="mobile-journey-active-card">
+            <h4 id="mobile-journey-active-title">🏠 Leaving Home</h4>
+            <p id="mobile-journey-active-desc">Your relocation journey begins.</p>
+          </div>
+        </div>
+      </div>
 
       <form id="waitlist-form" class="waitlist-form">
         <div class="form-row">
